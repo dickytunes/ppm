@@ -1,0 +1,40 @@
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Others
+*.swp
+*.swo
+.idea/
+
+# Build
+/dist/
+/build/
+
+# Coverage
+coverage/
+*.cover
+
+# Misc
+*.bak
+*.tmp
