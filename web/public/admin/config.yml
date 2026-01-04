@@ -1,7 +1,9 @@
 backend:
   name: github
-  repo: your-username/your-repo # TODO: update to real GitHub repo
+  repo: dickytunes/ppm
   branch: main
+  auth_type: implicit
+  app_id: "TODO_GITHUB_OAUTH_APP_CLIENT_ID"
 
 media_folder: "web/public/uploads"
 public_folder: "/uploads"

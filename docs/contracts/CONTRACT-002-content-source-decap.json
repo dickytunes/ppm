@@ -34,7 +34,7 @@
     },
     {
       "id": "github-auth",
-      "description": "Configure Decap authentication against GitHub for authorised editors."
+      "description": "Configure Decap authentication against GitHub for authorised editors using the GitHub backend with implicit OAuth (GitHub OAuth app) so the admin works on GitHub Pages without extra servers."
     },
     {
       "id": "astro-data-loading",
@@ -71,8 +71,9 @@
     ]
   },
   "dependenciesAndRisks": [
-    "GitHub authentication and repository permissions must be correctly configured for editors.",
-    "Hosting Decap admin under /admin must remain compatible with GitHub Pages deployment strategy.",
+    "GitHub authentication and repository permissions must be correctly configured for editors (GitHub OAuth app client_id for implicit flow).",
+    "Hosting Decap admin under /admin must remain compatible with GitHub Pages deployment strategy; no external auth server is assumed.",
+    "GitHub OAuth app must have callback https://dickytunes.github.io/ppm/admin/callback for implicit flow.",
     "Changes to content schema require coordinated updates to Astro code."
   ]
 }

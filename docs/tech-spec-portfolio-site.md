@@ -9,6 +9,7 @@
   - Fast, accessible site that works well on mobile and desktop.
   - Hosted as a static site on GitHub Pages, fronted by GitHub's CDN.
   - No single points of failure in custom infra (use managed services/third parties where possible).
+  - Decap CMS uses GitHub backend with implicit OAuth (GitHub OAuth app) so no extra servers beyond GitHub Pages.
 
 > NOTE: Items marked **[TBC]** are assumptions that should be confirmed or edited.
 
@@ -102,6 +103,7 @@
   - Content changes are infrequent; static builds are acceptable.
   - Enables CDN-level caching, strong performance, and low runtime cost.
   - Simplifies operations: no dedicated server to manage; hosting is static-only.
+  - Decap admin runs on GitHub Pages using GitHub OAuth implicit flow (no separate auth server).
 
 ### 6.2 Application Architecture
 
