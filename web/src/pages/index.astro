@@ -5,7 +5,7 @@ import { getSettings } from '../lib/content';
 const settings = await getSettings();
 const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
 
-const title = settings?.name || "Richard Hughes";
+const title = settings?.name || "Richard";
 const roles = settings?.roles || ["Web Developer", "Engineering Manager"];
 const shortBio = settings?.shortBio || "I build accessible, performant web applications and lead engineering teams to deliver exceptional digital experiences.";
 ---
