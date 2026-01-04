@@ -14,18 +14,18 @@ There is a desire to manage content through a browser-based CMS, while still dep
 
 ## Decision
 
-Use **Decap CMS** (a Git-based CMS) as the primary editorial interface for case studies and key profile/site settings information, with content stored in Markdown/JSON/YAML files in the repository. Site settings and configuration also live in version control. Authentication uses Decap's GitHub backend with **implicit OAuth** (GitHub OAuth app) so that the admin runs entirely on GitHub Pages without additional servers.
+Use **GitHub + Markdown in-repo** as the primary content source. Editors change content via GitHub UI/PRs; Astro consumes Markdown/JSON/YAML from the repository at build time. No in-browser CMS/admin is required, so there is no OAuth flow to manage on GitHub Pages.
 
 ## Rationale
 
 - Enables content changes via a web UI (Decap admin) while still storing content in git.
 - Structured collections make it easier to reuse information across pages (e.g. projects on home and projects pages).
 - Works well with static generation: content is treated as local files at build time.
-- No separate hosted CMS infrastructure is required beyond GitHub, the OAuth app, and static site hosting on GitHub Pages.
+- No separate hosted CMS infrastructure is required beyond GitHub Pages and the repository.
 
 ## Consequences
 
-- Requires configuration of Decap CMS (admin UI, GitHub backend with implicit OAuth, and collection definitions for case studies, footer company logos, and profile data).
+- Requires clear folder structure and frontmatter schema for case studies, footer company logos, and profile data; editors use GitHub workflows (PR/review) to change content.
 - Editorial access is tied to GitHub repository permissions.
 - Content changes trigger commits to the repository, which in turn trigger builds and deployments.
 - The repository will contain both code and content; care is needed when managing branches and reviews.

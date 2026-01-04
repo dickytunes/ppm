@@ -9,7 +9,7 @@
   - Fast, accessible site that works well on mobile and desktop.
   - Hosted as a static site on GitHub Pages, fronted by GitHub's CDN.
   - No single points of failure in custom infra (use managed services/third parties where possible).
-  - Decap CMS uses GitHub backend with implicit OAuth (GitHub OAuth app) so no extra servers beyond GitHub Pages.
+  - Content edited directly in GitHub (Markdown in repo); no in-browser CMS/admin required.
 
 > NOTE: Items marked **[TBC]** are assumptions that should be confirmed or edited.
 
@@ -109,7 +109,7 @@
 
 - Component-based UI with a design system (typography, color, spacing, buttons, cards, layout).
 - Routing handled by the chosen framework (file-based routing in Astro).
-- Data loading at build time from Decap-managed Git content (Markdown/JSON/YAML) and minimal config files.
+- Data loading at build time from Git-managed Markdown/JSON/YAML content stored in the repo (no external CMS).
 - Contact form handling via a third-party form provider compatible with static hosting.
 
 ## 7. Technology Stack (Proposed)

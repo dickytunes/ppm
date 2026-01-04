@@ -1,54 +1,47 @@
 {
   "id": "CONTRACT-002",
-  "name": "Content Source (Decap CMS)",
+  "name": "Content Source (Git-managed)",
   "relatedAdrs": ["ADR-002"],
   "status": "draft",
   "date": "2026-01-04",
   "scope": {
     "inScope": [
-      "Decap CMS admin and configuration",
+      "Content stored as Markdown/JSON/YAML in the repo (GitHub)",
       "Content collections for case studies, footer company logos, and profile/site settings (fields as agreed in tech spec)",
-      "Integration of Decap-managed content into the Astro build"
+      "Integration of Git-managed content into the Astro build"
     ],
     "outOfScope": [
       "Visual presentation/layout of content (handled by framework/runtime contract)",
-      "Contact form submission plumbing (handled by contact/forms contract)"
+      "Contact form submission plumbing (handled by contact/forms contract)",
+      "In-browser CMS admin UI (not provided)"
     ]
   },
   "commitments": [
     {
-      "id": "decap-admin",
-      "description": "Expose Decap admin (e.g. at /admin) with a valid configuration file."
-    },
-    {
       "id": "collections-case-studies",
-      "description": "Define a Decap collection for case studies (title, slug, summary, body, technologies, role, outcomes, images, links)."
+      "description": "Define and document the case studies content schema (title, slug, summary, body, technologies, role, outcomes, images, links) stored in repo content."
     },
     {
       "id": "collections-company-logos",
-      "description": "Define a Decap collection for footer company logos (company name, logo image, optional URL, ordering)."
+      "description": "Define and document the footer company logos schema (company name, logo image, optional URL, ordering) stored in repo content."
     },
     {
       "id": "collections-profile-settings",
-      "description": "Define a Decap collection for profile/site settings (name, roles, bio, social links, nav labels, icon identifiers)."
+      "description": "Define and document the profile/site settings schema (name, roles, bio, social links, nav labels, icon identifiers) stored in repo content."
     },
     {
-      "id": "github-auth",
-      "description": "Configure Decap authentication against GitHub for authorised editors using the GitHub backend with implicit OAuth (GitHub OAuth app) so the admin works on GitHub Pages without extra servers."
+      "id": "github-workflow",
+      "description": "Document the GitHub-based editing workflow (edit Markdown in repo, optional PR/review). No CMS admin or OAuth required."
     },
     {
       "id": "astro-data-loading",
-      "description": "Implement build-time data-loading utilities in Astro to read Decap-managed content for home, case studies, and footer."
+      "description": "Implement build-time data-loading utilities in Astro to read Git-managed content for home, case studies, and footer."
     }
   ],
   "deliverables": [
     {
-      "id": "decap-config",
-      "description": "Decap CMS configuration file (e.g. config.yml) committed in the repo."
-    },
-    {
-      "id": "decap-admin-entry",
-      "description": "Admin entry point (HTML + JS) for Decap under /admin."
+      "id": "content-structure",
+      "description": "Repository content folders/files for case studies, companies, and settings with agreed frontmatter schema."
     },
     {
       "id": "astro-content-modules",
@@ -57,13 +50,13 @@
   ],
   "acceptanceCriteria": {
     "admin": [
-      "Decap admin is reachable at the configured path.",
-      "Users with appropriate GitHub access can authenticate and edit content."
+      "Content is editable via GitHub (direct commits or PRs).",
+      "No reliance on external CMS admin UI."
     ],
     "contentFlow": [
-      "Editing or creating a case study via Decap commits content (using the agreed fields) to the repo and updates the site after deployment.",
-      "Editing company logos via Decap updates the footer logos on the site.",
-      "Editing profile/settings via Decap updates home hero text and global nav labels/icons on next build."
+      "Editing or creating a case study in repo content (agreed fields) updates the site after deployment.",
+      "Editing company logos in repo content updates the footer logos on the site.",
+      "Editing profile/settings in repo content updates home hero text and global nav labels/icons on next build."
     ],
     "buildIntegration": [
       "Builds succeed when new content entries are added.",
@@ -71,9 +64,8 @@
     ]
   },
   "dependenciesAndRisks": [
-    "GitHub authentication and repository permissions must be correctly configured for editors (GitHub OAuth app client_id for implicit flow).",
-    "Hosting Decap admin under /admin must remain compatible with GitHub Pages deployment strategy; no external auth server is assumed.",
-    "GitHub OAuth app must have callback https://dickytunes.github.io/ppm/admin/callback for implicit flow.",
+    "Repository permissions control who can edit content (direct commit vs PR).",
+    "No CMS admin UI is provided; contributors must be comfortable editing Markdown/JSON in GitHub.",
     "Changes to content schema require coordinated updates to Astro code."
   ]
 }
