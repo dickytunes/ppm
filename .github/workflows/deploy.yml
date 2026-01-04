@@ -37,6 +37,10 @@ jobs:
         working-directory: ./web
         run: npm run build
 
+      - name: Add .nojekyll to artifact
+        working-directory: ./web/dist
+        run: touch .nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
