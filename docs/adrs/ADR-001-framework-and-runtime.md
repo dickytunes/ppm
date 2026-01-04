@@ -27,6 +27,7 @@ Use a **static site generator**, with **Astro + TypeScript** as the default choi
 
 - The project will be structured as an Astro site, with TypeScript-enabled components.
 - Tailwind CSS will be used for styling with custom configuration for the dark off-black theme.
+- Layout will feature left-side vertical navigation with icons positioned at the top (collapsing to hamburger on mobile) and a two-tier footer (sub-footer for company logos, main footer for copyright/social).
 - There is no SSR at runtime; all dynamic behaviour must be implemented via client-side code or precomputed at build time.
 - Contact forms and similar features must rely on third-party services or external endpoints compatible with static hosting.
 - If a different framework is later preferred, this ADR should be updated or superseded with a new decision record.

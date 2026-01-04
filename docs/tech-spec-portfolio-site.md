@@ -29,8 +29,9 @@
   - Direct mailto link as fallback.
 
 4. **Global**
-  - Navigation with icon-based primary links for Home, Case Studies, and Contact, with accessible labels/tooltips.
-  - Footer containing social links (GitHub, LinkedIn, etc.) and a list of company logos representing places worked or collaborated with (editable via CMS).
+  - Navigation: Left-side vertical navigation with icon-based primary links positioned at the top for Home, Case Studies, and Contact, with accessible labels/tooltips. Collapses to hamburger menu on mobile.
+  - Sub-footer: Dedicated section above main footer displaying company logos representing places worked or collaborated with (editable via CMS).
+  - Footer: Main footer containing copyright notice and social links (GitHub, LinkedIn, etc.).
 
 ### 4.2 Non‑Functional Requirements
 
@@ -44,6 +45,7 @@
 
 3. **Look & Feel**
   - Dark, off-black theme as the primary mode (no separate light theme for v1).
+  - Left-side vertical navigation on desktop, collapsing to hamburger on mobile.
   - Navigation icons and UI elements use off-white (slightly muted, not pure white) for visual harmony.
   - Use subtle gradients and shadows to create depth without hurting readability.
   - Subtle, performance-friendly animations (e.g. hover states, section fades) that respect prefers-reduced-motion.

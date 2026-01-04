@@ -28,7 +28,7 @@
     },
     {
       "id": "layout-and-nav",
-      "description": "Implement a shared layout with icon-based primary navigation and a footer region for company logos and social links."
+      "description": "Implement a shared layout with left-side vertical navigation (icon-based links positioned at top, collapsing to hamburger on mobile) and a two-tier footer structure: sub-footer for company logos and main footer for copyright/social links."
     },
     {
       "id": "design-tokens-dark-theme",
@@ -60,7 +60,9 @@
     ],
     "visual": [
       "Global styles use a dark off-black background with accessible contrast.",
+      "Left-side vertical navigation displays on desktop with icons positioned at the top; collapses to hamburger on mobile.",
       "Navigation icons and UI elements use off-white (slightly muted, not pure white) color.",
+      "Sub-footer displays company logos above main footer with copyright/social links.",
       "Subtle gradients and animations implemented via tokens/utilities respect prefers-reduced-motion."
     ]
   },
