@@ -120,7 +120,7 @@ const socialLinks = settings?.socialLinks || [];
                   class="opacity-60 hover:opacity-100 transition-opacity"
                   aria-label={company.companyName}
                 >
-                  <img src={company.logo} alt={company.companyName} class="h-8 w-auto" />
+                  <img src={`${base}${company.logo}`} alt={company.companyName} class="h-8 w-auto" />
                 </a>
               ))}
             </div>
