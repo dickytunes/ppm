@@ -1,14 +1,12 @@
 ---
-name: Richard Henderson
+name: Richard
 roles:
   - Web Developer
   - Software Engineering Manager
 shortBio: I build accessible, performant web applications and lead engineering teams to deliver exceptional digital experiences.
 socialLinks:
-  - label: GitHub
-    url: https://github.com/yourusername
   - label: LinkedIn
-    url: https://linkedin.com/in/yourusername
+    url: https://www.linkedin.com/in/rich-holding/
 navItems:
   - label: Home
     iconId: home
