@@ -13,18 +13,34 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       (function initDecap() {
-        // Force a config query param so Decap never falls back to Netlify auth
         const url = new URL(window.location.href);
         const base = window.location.pathname.includes('/ppm/admin') ? '/ppm' : '';
-        const configUrl = `${base}/admin/config.yml`;
+        const configUrl = `${window.location.origin}${base}/admin/config.yml`;
 
+        // Force config param to avoid any default git-gateway fallback
         if (!url.searchParams.get('config')) {
           url.searchParams.set('config', configUrl);
           window.location.replace(url.toString());
           return;
         }
 
-        window.CMS.init({ config: url.searchParams.get('config') || configUrl });
+        console.log('Decap config URL:', url.searchParams.get('config'));
+
+        window.CMS.init({
+          config: {
+            load_config_file: true,
+            config_url: url.searchParams.get('config') || configUrl,
+            backend: {
+              name: 'github',
+              repo: 'dickytunes/ppm',
+              branch: 'master',
+              auth_type: 'pkce',
+              app_id: 'Ov23lid7cVp43gNV82f8',
+            },
+            media_folder: 'web/public/uploads',
+            public_folder: `${base}/uploads`,
+          },
+        });
       })();
     </script>
   </body>
