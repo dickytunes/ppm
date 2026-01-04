@@ -1,18 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const formEndpoint = ""; // TODO: configure third-party form provider endpoint
+const formEndpoint = 'https://formspree.io/f/xbldlbwk'; // replace with your Formspree form ID if needed
+const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
+const submitted = new URL(Astro.request.url).searchParams.get('submitted');
 ---
 <BaseLayout title="Contact" current="contact">
   <section class="max-w-6xl mx-auto px-5 lg:px-8 py-12 pb-16">
     <h1 class="text-[1.6rem] font-semibold mb-3">Let&apos;s talk</h1>
-    <p class="text-muted text-[0.95rem] mb-7">
-      Share a bit about what you&apos;re working on or looking for and I&apos;ll
-      get back to you.
+    <p class="text-muted text-[0.95rem] mb-4">
+      Share a bit about what you&apos;re working on or looking for and I&apos;ll get back to you.
     </p>
+    {submitted === '1' && (
+      <div class="mb-6 rounded-lg border border-border bg-surface/70 px-4 py-3 text-off-white" role="status">
+        Thanks — your message was sent. I&apos;ll respond as soon as I can.
+      </div>
+    )}
     <form
       method="POST"
       action={formEndpoint}
+      accept-charset="UTF-8"
       class="max-w-lg p-6 rounded-2xl bg-surface border border-border shadow-[0_24px_80px_rgba(0,0,0,0.9)]"
     >
       <div class="hidden" aria-hidden="true">
@@ -21,6 +28,7 @@ const formEndpoint = ""; // TODO: configure third-party form provider endpoint
           <input name="_honeypot" type="text" />
         </label>
       </div>
+      <input type="hidden" name="_redirect" value={`${base}/contact?submitted=1`} />
       <div class="mb-4">
         <label class="block text-[0.85rem] font-medium mb-1.5" for="name">Name</label>
         <input
@@ -59,10 +67,10 @@ const formEndpoint = ""; // TODO: configure third-party form provider endpoint
     </form>
     <p class="text-muted text-[0.8rem] mt-7 max-w-lg">
       Prefer email? You can also reach me at
-      <a href="mailto:you@example.com" class="underline text-off-white hover:text-white">
+      <a href="mailto:you@example.com?subject=Portfolio%20enquiry" class="underline text-off-white hover:text-white">
         you@example.com
       </a>
-      . Contact form uses a third-party provider as defined in ADR-003.
+      . The form posts to a third-party provider (Formspree); update the endpoint and email address in this file as needed.
     </p>
   </section>
 </BaseLayout>
