@@ -13,12 +13,18 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       (function initDecap() {
-        // Point Decap to the hosted config to avoid any fallback to Netlify git-gateway
-        const configUrl = window.location.pathname.includes('/ppm/admin')
-          ? '/ppm/admin/config.yml'
-          : '/admin/config.yml';
+        // Force a config query param so Decap never falls back to Netlify auth
+        const url = new URL(window.location.href);
+        const base = window.location.pathname.includes('/ppm/admin') ? '/ppm' : '';
+        const configUrl = `${base}/admin/config.yml`;
 
-        window.CMS.init({ config: configUrl });
+        if (!url.searchParams.get('config')) {
+          url.searchParams.set('config', configUrl);
+          window.location.replace(url.toString());
+          return;
+        }
+
+        window.CMS.init({ config: url.searchParams.get('config') || configUrl });
       })();
     </script>
   </body>
