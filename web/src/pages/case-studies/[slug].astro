@@ -16,13 +16,14 @@ interface Props {
 }
 
 const { study } = Astro.props as Props;
+const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
 
 ---
 
 <BaseLayout title={`${study.title} – Case Study`} current="case-studies">
   <article class="max-w-4xl mx-auto px-5 lg:px-8 py-12 pb-16">
     <div class="mb-6">
-      <a href="/case-studies" class="text-muted hover:text-off-white transition-colors inline-flex items-center gap-1.5 text-sm">
+      <a href={`${base}/case-studies`} class="text-muted hover:text-off-white transition-colors inline-flex items-center gap-1.5 text-sm">
         <svg width="14" height="14" fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2">
           <path d="M10 13l-5-5 5-5" />
         </svg>
