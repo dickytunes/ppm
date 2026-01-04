@@ -1,8 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSettings } from '../lib/content';
 
-const title = "Richard Hughes";
-const roles = ["Web Developer", "Engineering Manager"];
+const settings = await getSettings();
+
+const title = settings?.name || "Richard Hughes";
+const roles = settings?.roles || ["Web Developer", "Engineering Manager"];
+const shortBio = settings?.shortBio || "I build accessible, performant web applications and lead engineering teams to deliver exceptional digital experiences.";
 ---
 <BaseLayout title={`${title} – Portfolio`} current="home">
   <section class="max-w-6xl mx-auto px-5 lg:px-8 py-16 pb-12">
@@ -11,8 +15,7 @@ const roles = ["Web Developer", "Engineering Manager"];
       Conversational, pragmatic engineering leadership.
     </h1>
     <p class="max-w-xl text-muted text-[0.95rem] leading-relaxed mb-6">
-      I&apos;m {title}, a {roles.join(' and ')} focused on shipping reliable web
-      experiences, building healthy teams, and keeping architecture grounded in real user needs.
+      I&apos;m {title}, a {roles.join(' and ')}. {shortBio}
     </p>
     <div class="flex flex-wrap gap-3">
       <a href="/case-studies" class="inline-flex items-center justify-center px-[1.1rem] py-2 rounded-full bg-off-white text-off-black text-[0.85rem] font-medium shadow-[0_24px_80px_rgba(0,0,0,0.9)] transition-all duration-150 hover:bg-white hover:-translate-y-0.5">

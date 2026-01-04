@@ -1,4 +1,6 @@
 ---
+import { getCompanies, getSettings } from '../lib/content';
+
 import '../styles/global.css';
 
 interface Props {
@@ -7,6 +9,10 @@ interface Props {
 }
 
 const { title = 'Portfolio', current = 'home' } = Astro.props as Props;
+
+const companies = await getCompanies();
+const settings = await getSettings();
+const socialLinks = settings?.socialLinks || [];
 ---
 
 <html lang="en">
@@ -100,22 +106,42 @@ const { title = 'Portfolio', current = 'home' } = Astro.props as Props;
       </main>
 
       <!-- Sub-footer: Company logos -->
-      <div class="border-t border-border/50 bg-off-black/50 py-8">
-        <div class="max-w-6xl mx-auto px-5 lg:px-8">
-          <p class="text-xs text-muted mb-4">Companies I've worked with</p>
-          <div class="text-sm text-muted/70">
-            Company logos will be rendered here from Decap-managed content.
+      {companies.length > 0 && (
+        <div class="border-t border-border bg-surface/50 py-8">
+          <div class="max-w-6xl mx-auto px-5 lg:px-8">
+            <p class="text-xs text-muted uppercase tracking-wider mb-4">Companies I've worked with</p>
+            <div class="flex flex-wrap gap-8 items-center">
+              {companies.map((company) => (
+                <a
+                  href={company.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="opacity-60 hover:opacity-100 transition-opacity"
+                  aria-label={company.companyName}
+                >
+                  <img src={company.logo} alt={company.companyName} class="h-8 w-auto" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <!-- Main footer: Copyright & social -->
       <footer class="border-t border-border bg-off-black/95 py-5">
         <div class="max-w-6xl mx-auto px-5 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <p class="text-xs text-muted">© {new Date().getFullYear()} {title}. All rights reserved.</p>
           <div class="flex gap-4">
-            <a href="https://github.com" class="text-xs text-off-white hover:text-white transition-colors">GitHub</a>
-            <a href="https://linkedin.com" class="text-xs text-off-white hover:text-white transition-colors">LinkedIn</a>
+            {socialLinks.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted hover:text-off-white transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </footer>
