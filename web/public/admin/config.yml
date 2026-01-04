@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: dickytunes/ppm
-  branch: main
+  branch: master
   auth_type: implicit
   app_id: "Ov23lid7cVp43gNV82f8"
 

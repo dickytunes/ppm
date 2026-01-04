@@ -3,9 +3,32 @@
   <head>
     <meta charset="utf-8" />
     <title>Decap CMS</title>
+    <script>
+      // Ensure Decap uses manual init with GitHub implicit OAuth (no Netlify fallback)
+      window.CMS_MANUAL_INIT = true;
+    </script>
   </head>
   <body>
     <!-- Decap CMS will boot here -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      (function initDecap() {
+        const base = window.location.pathname.includes('/ppm/admin') ? '/ppm' : '';
+
+        window.CMS.init({
+          config: {
+            backend: {
+              name: 'github',
+              repo: 'dickytunes/ppm',
+              branch: 'master',
+              auth_type: 'implicit',
+              app_id: 'Ov23lid7cVp43gNV82f8',
+            },
+            media_folder: 'web/public/uploads',
+            public_folder: `${base}/uploads`,
+          },
+        });
+      })();
+    </script>
   </body>
 </html>
