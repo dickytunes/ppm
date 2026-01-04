@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Decap CMS</title>
     <script>
-      // Ensure Decap uses manual init with GitHub implicit OAuth (no Netlify fallback)
+      // Use manual init so we can point to the hosted config explicitly
       window.CMS_MANUAL_INIT = true;
     </script>
   </head>
@@ -13,21 +13,12 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       (function initDecap() {
-        const base = window.location.pathname.includes('/ppm/admin') ? '/ppm' : '';
+        // Point Decap to the hosted config to avoid any fallback to Netlify git-gateway
+        const configUrl = window.location.pathname.includes('/ppm/admin')
+          ? '/ppm/admin/config.yml'
+          : '/admin/config.yml';
 
-        window.CMS.init({
-          config: {
-            backend: {
-              name: 'github',
-              repo: 'dickytunes/ppm',
-              branch: 'master',
-              auth_type: 'pkce',
-              app_id: 'Ov23lid7cVp43gNV82f8',
-            },
-            media_folder: 'web/public/uploads',
-            public_folder: `${base}/uploads`,
-          },
-        });
+        window.CMS.init({ config: configUrl });
       })();
     </script>
   </body>
