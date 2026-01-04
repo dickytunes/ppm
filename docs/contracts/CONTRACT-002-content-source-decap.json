@@ -1,0 +1,78 @@
+{
+  "id": "CONTRACT-002",
+  "name": "Content Source (Decap CMS)",
+  "relatedAdrs": ["ADR-002"],
+  "status": "draft",
+  "date": "2026-01-04",
+  "scope": {
+    "inScope": [
+      "Decap CMS admin and configuration",
+      "Content collections for case studies, footer company logos, and profile/site settings (fields as agreed in tech spec)",
+      "Integration of Decap-managed content into the Astro build"
+    ],
+    "outOfScope": [
+      "Visual presentation/layout of content (handled by framework/runtime contract)",
+      "Contact form submission plumbing (handled by contact/forms contract)"
+    ]
+  },
+  "commitments": [
+    {
+      "id": "decap-admin",
+      "description": "Expose Decap admin (e.g. at /admin) with a valid configuration file."
+    },
+    {
+      "id": "collections-case-studies",
+      "description": "Define a Decap collection for case studies (title, slug, summary, body, technologies, role, outcomes, images, links)."
+    },
+    {
+      "id": "collections-company-logos",
+      "description": "Define a Decap collection for footer company logos (company name, logo image, optional URL, ordering)."
+    },
+    {
+      "id": "collections-profile-settings",
+      "description": "Define a Decap collection for profile/site settings (name, roles, bio, social links, nav labels, icon identifiers)."
+    },
+    {
+      "id": "github-auth",
+      "description": "Configure Decap authentication against GitHub for authorised editors."
+    },
+    {
+      "id": "astro-data-loading",
+      "description": "Implement build-time data-loading utilities in Astro to read Decap-managed content for home, case studies, and footer."
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "decap-config",
+      "description": "Decap CMS configuration file (e.g. config.yml) committed in the repo."
+    },
+    {
+      "id": "decap-admin-entry",
+      "description": "Admin entry point (HTML + JS) for Decap under /admin."
+    },
+    {
+      "id": "astro-content-modules",
+      "description": "Astro utilities or modules exposing case studies, company logos, and profile/settings data to pages/components."
+    }
+  ],
+  "acceptanceCriteria": {
+    "admin": [
+      "Decap admin is reachable at the configured path.",
+      "Users with appropriate GitHub access can authenticate and edit content."
+    ],
+    "contentFlow": [
+      "Editing or creating a case study via Decap commits content (using the agreed fields) to the repo and updates the site after deployment.",
+      "Editing company logos via Decap updates the footer logos on the site.",
+      "Editing profile/settings via Decap updates home hero text and global nav labels/icons on next build."
+    ],
+    "buildIntegration": [
+      "Builds succeed when new content entries are added.",
+      "Malformed content causes a clear, actionable build error."
+    ]
+  },
+  "dependenciesAndRisks": [
+    "GitHub authentication and repository permissions must be correctly configured for editors.",
+    "Hosting Decap admin under /admin must remain compatible with GitHub Pages deployment strategy.",
+    "Changes to content schema require coordinated updates to Astro code."
+  ]
+}

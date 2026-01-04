@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  // TODO: Wire to Decap content in CONTRACT-002
+  return [];
+}
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.params as Props;
+
+// TODO: Load the matching case study from Decap-managed content.
+---
+
+<BaseLayout title={`Case study – ${slug}`} current="case-studies">
+  <section class="section">
+    <p class="hero-kicker">Case study</p>
+    <h1 class="section-title" style="margin-bottom: 1rem; text-transform: capitalize;">{slug.replace(/-/g, ' ')}</h1>
+    <p class="section-body">
+      This is a placeholder for the <code>{slug}</code> case study. In a later
+      contract we&apos;ll wire this up to Decap CMS content.
+    </p>
+  </section>
+</BaseLayout>

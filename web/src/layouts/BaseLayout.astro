@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  current?: 'home' | 'case-studies' | 'contact';
+}
+
+const { title = 'Portfolio', current = 'home' } = Astro.props as Props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col bg-off-black text-off-white font-sans">
+    <style>
+      body {
+        background-image:
+          radial-gradient(circle at top left, rgba(38, 38, 38, 0.4), transparent 55%),
+          radial-gradient(circle at bottom right, rgba(50, 50, 50, 0.3), transparent 55%);
+      }
+    </style>
+    <header class="border-b border-border backdrop-blur-lg bg-off-black/80">
+      <nav class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+        <div class="font-semibold tracking-tight">{title}</div>
+        <ul class="flex gap-3 list-none m-0 p-0">
+          <li>
+            <a
+              href="/"
+              aria-label="Home"
+              aria-current={current === 'home' ? 'page' : undefined}
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full text-off-white bg-surface border border-border transition-all duration-150 hover:bg-off-white hover:text-off-black hover:-translate-y-0.5 {current === 'home' ? 'bg-off-white text-off-black' : ''}"
+            >
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 1L1 6V15H6V10H10V15H15V6L8 1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/case-studies"
+              aria-label="Case studies"
+              aria-current={current === 'case-studies' ? 'page' : undefined}
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full text-off-white bg-surface border border-border transition-all duration-150 hover:bg-off-white hover:text-off-black hover:-translate-y-0.5 {current === 'case-studies' ? 'bg-off-white text-off-black' : ''}"
+            >
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2H7V7H2V2Z" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M9 2H14V7H9V2Z" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M2 9H7V14H2V9Z" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M9 9H14V14H9V9Z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              aria-label="Contact"
+              aria-current={current === 'contact' ? 'page' : undefined}
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full text-off-white bg-surface border border-border transition-all duration-150 hover:bg-off-white hover:text-off-black hover:-translate-y-0.5 {current === 'contact' ? 'bg-off-white text-off-black' : ''}"
+            >
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 3H15V13H1V3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M1 3L8 9L15 3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-border bg-off-black/95">
+      <div class="max-w-6xl mx-auto px-5 py-5 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <p class="text-xs text-muted">© {new Date().getFullYear()} {title}. All rights reserved.</p>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-6">
+          <div class="text-xs text-muted">Footer company logos will be rendered here from Decap-managed content.</div>
+          <div class="flex gap-3">
+            <a href="https://github.com" class="text-xs text-off-white hover:text-white transition-colors">GitHub</a>
+            <a href="https://linkedin.com" class="text-xs text-off-white hover:text-white transition-colors">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

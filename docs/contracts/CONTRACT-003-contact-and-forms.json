@@ -1,0 +1,73 @@
+{
+  "id": "CONTRACT-003",
+  "name": "Contact and Forms",
+  "relatedAdrs": ["ADR-003"],
+  "status": "draft",
+  "date": "2026-01-04",
+  "scope": {
+    "inScope": [
+      "Contact page UI and validation",
+      "Integration with a static-site-compatible third-party form service",
+      "Mailto fallback behaviour",
+      "Basic spam protection for the contact form"
+    ],
+    "outOfScope": [
+      "CRM integration or advanced lead tracking",
+      "Analytics and conversion tracking beyond basic page analytics"
+    ]
+  },
+  "commitments": [
+    {
+      "id": "contact-page-ui",
+      "description": "Implement /contact page with name, email, and message fields and accessible validation."
+    },
+    {
+      "id": "form-provider-integration",
+      "description": "Wire the contact form to the chosen third-party form provider endpoint with success/error handling."
+    },
+    {
+      "id": "mailto-fallback",
+      "description": "Provide a visible mailto fallback link that opens the user’s client with prefilled subject/recipient."
+    },
+    {
+      "id": "spam-protection",
+      "description": "Implement simple spam protection (e.g. honeypot field) compatible with the form provider."
+    },
+    {
+      "id": "theme-alignment",
+      "description": "Ensure contact form styling matches the dark off-black theme and overall design language."
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "astro-contact-page",
+      "description": "Astro implementation of the /contact page with form and mailto link."
+    },
+    {
+      "id": "form-config",
+      "description": "Configuration for the form provider endpoint (e.g. environment variables or config file entries)."
+    },
+    {
+      "id": "readme-contact-docs",
+      "description": "README section explaining how to change recipient email/address and provider configuration."
+    }
+  ],
+  "acceptanceCriteria": {
+    "functional": [
+      "Valid submissions reach the third-party form provider and show a success message.",
+      "Invalid submissions surface clear validation errors.",
+      "Mailto fallback opens the user’s client with correct recipient and subject."
+    ],
+    "reliability": [
+      "If the provider is unavailable, the page shows a graceful error and still exposes the mailto link."
+    ],
+    "security": [
+      "Honeypot or similar anti-bot mechanism is active and tested."
+    ]
+  },
+  "dependenciesAndRisks": [
+    "Availability and reliability of the chosen form provider.",
+    "Correct configuration of provider endpoints and environment variables to avoid lost messages.",
+    "Future CRM or tracking integrations may require follow-up ADRs and contracts."
+  ]
+}

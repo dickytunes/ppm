@@ -1,0 +1,72 @@
+{
+  "id": "CONTRACT-001",
+  "name": "Framework and Runtime (Astro + GitHub Pages)",
+  "relatedAdrs": ["ADR-001"],
+  "status": "draft",
+  "date": "2026-01-04",
+  "scope": {
+    "inScope": [
+      "Astro + TypeScript project scaffolding",
+      "Tailwind CSS installation and configuration",
+      "Static-site build pipeline for GitHub Pages",
+      "Layouts, routing, and shared components for home, case studies index/detail, and contact",
+      "Dark off-black base theme wired into Tailwind design tokens"
+    ],
+    "outOfScope": [
+      "Decap CMS content modelling and admin configuration",
+      "Contact form provider integration"
+    ]
+  },
+  "commitments": [
+    {
+      "id": "astro-project-init",
+      "description": "Initialize an Astro project with TypeScript and a project structure aligned with the tech spec."
+    },
+    {
+      "id": "routing-core-pages",
+      "description": "Configure routing for /, /case-studies, /case-studies/[slug], and /contact."
+    },
+    {
+      "id": "layout-and-nav",
+      "description": "Implement a shared layout with icon-based primary navigation and a footer region for company logos and social links."
+    },
+    {
+      "id": "design-tokens-dark-theme",
+      "description": "Configure Tailwind CSS with custom design tokens (colors, typography, spacing) supporting a dark off-black theme with off-white (slightly muted) icons and UI elements, subtle gradients, and animations respecting prefers-reduced-motion."
+    },
+    {
+      "id": "github-actions-pages",
+      "description": "Configure a GitHub Actions workflow to build the Astro site and deploy to GitHub Pages."
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "astro-codebase",
+      "description": "Astro project in the repository with TypeScript configured, base layout, routing, and shared components."
+    },
+    {
+      "id": "ci-cd-workflow",
+      "description": "GitHub Actions workflow files to install dependencies, run Astro build, and publish the static site to GitHub Pages."
+    }
+  ],
+  "acceptanceCriteria": {
+    "localDev": [
+      "Install + dev command runs the Astro dev server without errors.",
+      "Home, case studies, and contact routes all render (placeholder content allowed)."
+    ],
+    "buildAndDeploy": [
+      "Build command completes successfully on a clean checkout.",
+      "GitHub Actions pipeline builds and publishes to GitHub Pages, resulting in a working production site at the configured URL."
+    ],
+    "visual": [
+      "Global styles use a dark off-black background with accessible contrast.",
+      "Navigation icons and UI elements use off-white (slightly muted, not pure white) color.",
+      "Subtle gradients and animations implemented via tokens/utilities respect prefers-reduced-motion."
+    ]
+  },
+  "dependenciesAndRisks": [
+    "GitHub repository and GitHub Pages correctly configured for the target domain.",
+    "Astro tooling and GitHub Actions runners compatible with the selected Node.js version.",
+    "Design token changes may impact existing components and should be introduced carefully."
+  ]
+}
