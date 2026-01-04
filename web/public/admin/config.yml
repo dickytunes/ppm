@@ -2,7 +2,7 @@ backend:
   name: github
   repo: dickytunes/ppm
   branch: master
-  auth_type: implicit
+  auth_type: pkce
   app_id: "Ov23lid7cVp43gNV82f8"
 
 media_folder: "web/public/uploads"
