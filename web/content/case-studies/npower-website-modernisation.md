@@ -10,7 +10,7 @@ technologies:
 role: Frontend Developer
 outcomes: Won Guild of Accessible Websites Site of the Month award, achieved WAG Level 3 compliance, modernised 6 major websites.
 images:
-  - /uploads/npower-accessibility.jpg
+  - /uploads/npower-website.jpg
 links:
   - label: Guild of Accessible Websites
     url: https://www.gateweb.org.uk
