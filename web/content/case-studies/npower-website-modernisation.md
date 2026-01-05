@@ -9,7 +9,11 @@ technologies:
   - Accessibility (WAI-ARIA)
 role: Frontend Developer
 outcomes: Won Guild of Accessible Websites Site of the Month award, achieved WAG Level 3 compliance, modernised 6 major websites.
-dates: July 2004 - January 2006
+images:
+  - /uploads/npower-accessibility.jpg
+links:
+  - label: Guild of Accessible Websites
+    url: https://www.gateweb.org.uk
 ---
 
 ## Project Overview
