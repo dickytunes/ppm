@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import matter from 'gray-matter';
+import { marked } from 'marked';
 
 const CONTENT_DIR = join(process.cwd(), 'content');
 
@@ -46,12 +47,13 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
         const filePath = join(caseStudiesPath, file);
         const content = await readFile(filePath, 'utf-8');
         const { data, content: body } = matter(content);
+        const htmlBody = await marked(body);
         
         return {
           slug: data.slug || file.replace('.md', ''),
           title: data.title || '',
           summary: data.summary || '',
-          body: body || '',
+          body: htmlBody || '',
           technologies: data.technologies || [],
           role: data.role || '',
           outcomes: data.outcomes || '',
