@@ -1,6 +1,49 @@
+/* JetBrains Mono from Fontsource */
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/latin-500.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #0a0a0a;
+    color: #e3e2e2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans text-body-md;
+    background-color: #121314;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-on-surface;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(23, 23, 23, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(38, 38, 38, 1);
+  }
+}
+
+@layer utilities {
+  .animate-drift {
+    animation: subtle-drift 8s ease-in-out infinite;
+  }
+}
+
+@keyframes subtle-drift {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-10px) translateX(5px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

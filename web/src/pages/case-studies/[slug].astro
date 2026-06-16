@@ -4,7 +4,6 @@ import { getCaseStudies } from '../../lib/content';
 
 export async function getStaticPaths() {
   const caseStudies = await getCaseStudies();
-  
   return caseStudies.map((study) => ({
     params: { slug: study.slug },
     props: { study },
@@ -17,62 +16,139 @@ interface Props {
 
 const { study } = Astro.props as Props;
 const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
-
 ---
 
-<BaseLayout title={`${study.title} – Case Study`} current="case-studies">
-  <article class="max-w-4xl mx-auto px-5 lg:px-8 py-12 pb-16">
-    <div class="mb-6">
-      <a href={`${base}/case-studies`} class="text-muted hover:text-off-white transition-colors inline-flex items-center gap-1.5 text-sm">
-        <svg width="14" height="14" fill="none" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2">
-          <path d="M10 13l-5-5 5-5" />
-        </svg>
-        Back to Case Studies
-      </a>
-    </div>
-    
-    <h1 class="text-[clamp(2rem,4vw,3rem)] leading-tight font-semibold mb-4 bg-gradient-to-r from-off-white to-muted bg-clip-text text-transparent">
-      {study.title}
-    </h1>
-    
-    <div class="flex flex-wrap gap-2 mb-6">
-      {study.technologies.map((tech) => (
-        <span class="px-3 py-1 bg-surface border border-border rounded-full text-sm text-muted">
-          {tech}
-        </span>
-      ))}
-    </div>
-    
-    <div class="bg-surface/40 border border-border rounded-lg p-5 mb-8">
-      <dl class="grid gap-4">
-        <div>
-          <dt class="text-muted text-xs uppercase tracking-wider mb-1">Role</dt>
-          <dd class="text-off-white">{study.role}</dd>
+<BaseLayout title={`${study.title} – Case Study`} current="portfolio">
+  <!-- Top nav bar for detail view -->
+  <header class="sticky top-0 z-40 h-16 bg-surface/80 backdrop-blur-md flex justify-between items-center px-margin-mobile md:px-gutter border-b border-outline-variant/30">
+    <a
+      href={`${base}/case-studies`}
+      class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors"
+    >
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span class="font-mono text-label-code">BACK TO LISTING</span>
+    </a>
+    <div class="font-mono text-label-code tracking-tighter text-on-surface opacity-50">ENGINEER_MANAGER</div>
+  </header>
+
+  <article class="px-margin-mobile md:px-gutter py-16 overflow-x-hidden">
+    <div class="max-w-container mx-auto">
+      <!-- Tech tags -->
+      {study.technologies.length > 0 && (
+        <div class="mb-6 flex flex-wrap gap-2">
+          {study.technologies.map((tech: string) => (
+            <span class="bg-secondary-container/20 text-primary font-mono text-label-code px-2 py-1 rounded">{tech.toUpperCase()}</span>
+          ))}
         </div>
-        <div>
-          <dt class="text-muted text-xs uppercase tracking-wider mb-1">Outcomes</dt>
-          <dd class="text-off-white text-sm">{study.outcomes}</dd>
+      )}
+
+      <!-- Title + Role -->
+      <h1 class="font-sans text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">{study.title}</h1>
+      <p class="font-label-caps text-label-caps text-on-surface-variant opacity-70 mb-8 uppercase">Role: {study.role}</p>
+
+      <!-- Hero image placeholder -->
+      {study.images.length > 0 && (
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-outline-variant/30 mb-12 bg-surface-container-low">
+          <img
+            src={`${base}${study.images[0]}`}
+            alt={study.title}
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
-      </dl>
-    </div>
-    
-    <div class="prose prose-invert prose-lg max-w-none mb-8 text-off-white/90">
-      <div set:html={study.body} />
-    </div>
-    
-    {study.links && study.links.length > 0 && (
-      <div class="flex gap-3">
-        {study.links.map((link) => (
-          <a
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-[1.1rem] py-2 rounded-full bg-off-white text-off-black text-[0.85rem] font-medium transition-all hover:bg-white"
-          >
-            {link.label}
-          </a>
-        ))}
+      )}
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Problem -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary">
+              <path d="M12 9v4M12 17h.01M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"/>
+            </svg>
+            <h2 class="font-label-caps text-label-caps text-on-surface">THE PROBLEM</h2>
+          </div>
+          <h3 class="font-sans text-[20px] leading-tight text-on-surface">{study.title}</h3>
+          <p class="text-on-surface-variant font-sans text-body-sm opacity-80">
+            {study.summary}
+          </p>
+        </div>
+
+        <!-- Approach -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>
+            </svg>
+            <h2 class="font-label-caps text-label-caps text-on-surface">THE APPROACH</h2>
+          </div>
+          <h3 class="font-sans text-[20px] leading-tight text-on-surface">Technical Strategy</h3>
+          <p class="text-on-surface-variant font-sans text-body-sm opacity-80">
+            {study.outcomes || study.summary}
+          </p>
+          {study.technologies.length > 0 && (
+            <ul class="space-y-3 mt-2">
+              {study.technologies.slice(0, 3).map((tech: string) => (
+                <li class="flex items-start gap-2">
+                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary mt-0.5 shrink-0">
+                    <path d="M20 6 9 17l-5-5"/>
+                  </svg>
+                  <span class="font-sans text-body-sm text-on-surface-variant">{tech}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <!-- Visual break (second image or spacer) -->
+        {study.images.length > 1 && (
+          <div class="relative h-64 rounded-xl overflow-hidden border border-outline-variant/30 md:col-span-2">
+            <img src={`${base}${study.images[1]}`} alt="" class="w-full h-full object-cover" />
+          </div>
+        )}
+
+        <!-- Outcome (accent card) -->
+        <div class="bg-primary text-primary-container p-6 flex flex-col gap-4 md:col-span-2">
+          <div class="flex items-center gap-3">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-80">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <path d="M22 4 12 14.01l-3-3"/>
+            </svg>
+            <h2 class="font-label-caps text-label-caps opacity-80">THE OUTCOME</h2>
+          </div>
+          <p class="font-sans text-body-sm font-medium max-w-2xl">
+            {study.outcomes || study.summary}
+          </p>
+        </div>
       </div>
-    )}
+
+      <!-- Body content -->
+      {study.body && (
+        <div class="mt-12 prose prose-invert prose-lg max-w-none">
+          <div set:html={study.body} />
+        </div>
+      )}
+
+      <!-- Links -->
+      {study.links && study.links.length > 0 && (
+        <div class="mt-12 pt-8 border-t border-outline-variant/20 flex flex-wrap gap-3">
+          {study.links.map((link: any) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-off-white text-off-black px-8 py-3 font-label-caps text-label-caps transition-all active:scale-95 hover:bg-white inline-flex items-center gap-2"
+            >
+              {link.label}
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
   </article>
 </BaseLayout>

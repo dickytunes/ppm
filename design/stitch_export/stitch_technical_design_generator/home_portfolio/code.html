@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "on-secondary-container": "#b5b5b5",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "on-background": "#e3e2e2",
+                    "surface-dim": "#121314",
+                    "surface-bright": "#393939",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#343535",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "error-container": "#93000a",
+                    "secondary": "#c6c6c6",
+                    "tertiary-fixed": "#e4e2e1",
+                    "inverse-surface": "#e3e2e2",
+                    "inverse-primary": "#5f5e5e",
+                    "on-tertiary": "#303030",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-surface": "#e3e2e2",
+                    "on-secondary": "#2f3131",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-container-low": "#1b1c1c",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "outline-variant": "#444748",
+                    "tertiary": "#c8c6c5",
+                    "background": "#121314",
+                    "inverse-on-surface": "#303031",
+                    "on-surface-variant": "#c4c7c7",
+                    "primary-fixed": "#e5e2e1",
+                    "primary-container": "#0a0a0a",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "surface-container": "#1f2020",
+                    "on-primary": "#313030",
+                    "surface-tint": "#c9c6c5",
+                    "surface-container-lowest": "#0d0e0f",
+                    "surface-variant": "#343535",
+                    "primary": "#c9c6c5",
+                    "surface": "#121314",
+                    "secondary-container": "#454747",
+                    "on-primary-container": "#7b7979",
+                    "outline": "#8e9192",
+                    "on-tertiary-container": "#7a7979",
+                    "on-error": "#690005",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-container-high": "#292a2a",
+                    "error": "#ffb4ab",
+                    "tertiary-container": "#0a0a0a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin_mobile": "16px",
+                    "unit": "8px",
+                    "container_max_width": "1200px",
+                    "nav_width_desktop": "280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "label-code": ["JetBrains Mono"],
+                    "body-md": ["Geist"],
+                    "body-sm": ["Geist"],
+                    "headline-xl": ["Geist"],
+                    "headline-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-code": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(23, 23, 23, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(38, 38, 38, 0.5);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes subtle-drift {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-10px) translateX(5px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+        .animate-drift {
+            animation: subtle-drift 8s ease-in-out infinite;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #e3e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation Bar (Fixed for Mobile Shell) -->
+<header class="fixed top-0 w-full z-50 h-16 bg-surface border-b border-outline-variant/30 flex justify-between items-center px-margin_mobile md:px-gutter">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary cursor-pointer active:opacity-70" onclick="toggleDrawer()">menu</span>
+<h1 class="font-label-code text-label-code tracking-tighter text-on-surface">ENGINEER_MANAGER</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+</header>
+<!-- NavigationDrawer (The Anchor) -->
+<nav class="fixed inset-y-0 left-0 z-[60] flex flex-col h-full w-[280px] bg-surface-container-low border-r border-outline-variant/20 shadow-2xl -translate-x-full transition-transform duration-500 ease-in-out" id="drawer">
+<div class="p-margin_mobile flex flex-col gap-8 h-full">
+<div class="flex justify-between items-center">
+<span class="font-label-code text-label-code text-primary">NAVIGATION</span>
+<span class="material-symbols-outlined cursor-pointer" onclick="toggleDrawer()">close</span>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Active Item Logic: Portfolio (Home) -->
+<a class="border-l-2 border-primary bg-secondary-container/10 text-on-surface font-bold px-6 py-4 flex items-center gap-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-label-caps text-label-caps">Portfolio</span>
+</a>
+<a class="text-on-secondary-container/60 hover:text-on-surface hover:bg-surface-container-high px-6 py-4 flex items-center gap-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-caps text-label-caps">Philosophy</span>
+</a>
+<a class="text-on-secondary-container/60 hover:text-on-surface hover:bg-surface-container-high px-6 py-4 flex items-center gap-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-label-caps text-label-caps">Stack</span>
+</a>
+<a class="text-on-secondary-container/60 hover:text-on-surface hover:bg-surface-container-high px-6 py-4 flex items-center gap-4 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-caps text-label-caps">Contact</span>
+</a>
+</div>
+<div class="mt-auto pt-8 border-t border-outline-variant/10">
+<p class="font-label-code text-[10px] text-on-surface-variant/40 leading-relaxed uppercase">
+                    Architect_OS // V2.4.0 <br/>
+                    Stable Build: 2024.11
+                </p>
+</div>
+</div>
+</nav>
+<div class="fixed inset-0 bg-black/60 z-[55] hidden transition-opacity duration-300" id="drawer-overlay" onclick="toggleDrawer()"></div>
+<!-- Main Content -->
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative min-h-[707px] flex flex-col justify-center px-margin_mobile overflow-hidden">
+
+<div class="relative z-10 flex flex-col gap-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container/30 border border-outline-variant/30 rounded-full w-fit">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-code text-[11px] text-primary">AVAILABLE FOR PROJECTS</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface-variant">Engineering Manager &amp;</h2>
+<h3 class="font-headline-xl text-headline-xl text-on-surface -mt-2">Web Developer.</h3>
+</div>
+<div class="flex flex-col gap-1 border-l border-outline-variant/30 pl-4 py-2">
+<p class="font-label-caps text-label-caps text-primary tracking-widest">[ALEXANDER VORON]</p>
+<p class="font-label-code text-label-code opacity-60">LONDON, UK // 51.5074° N, 0.1278° W</p>
+</div>
+<p class="text-on-surface-variant max-w-[90%] leading-relaxed">
+                    Building scalable systems and high-performing engineering teams with a focus on precision and strategic oversight.
+                </p>
+<div class="flex items-center gap-4 mt-4">
+<button class="bg-[#e5e5e5] text-[#0a0a0a] px-8 py-3 font-label-caps text-label-caps transition-transform active:scale-95">VIEW_PORTFOLIO</button>
+<button class="border border-[#262626] text-[#e5e5e5] px-6 py-3 font-label-caps text-label-caps flex items-center gap-2 active:bg-surface-container-high">
+                        RESUME <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Experience Summary (Bento-ish) -->
+<section class="px-margin_mobile mt-16 space-y-4">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant opacity-40">01 / CAPABILITIES</h4>
+<div class="grid grid-cols-1 gap-4">
+<div class="glass-card p-6 flex flex-col gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">developer_board</span>
+<h5 class="font-headline-lg-mobile text-headline-lg-mobile">System Architecture</h5>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Designing robust, distributed backends and high-availability frontends that scale to millions of users without technical debt.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low border border-outline-variant/20 p-4 flex flex-col gap-2">
+<span class="font-label-code text-primary">10+</span>
+<span class="font-label-caps text-label-caps text-[10px]">YEARS EXP</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/20 p-4 flex flex-col gap-2">
+<span class="font-label-code text-primary">40+</span>
+<span class="font-label-caps text-label-caps text-[10px]">SHIPPED APPS</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Case Studies -->
+<section class="px-margin_mobile mt-24 space-y-6">
+<div class="flex justify-between items-end">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant opacity-40">02 / PROJECTS</h4>
+<a class="text-primary font-label-code text-label-code underline decoration-primary/30" href="#">ALL_WORK</a>
+</div>
+<!-- Card 1 -->
+<div class="group relative bg-[#171717] border border-[#262626] overflow-hidden">
+<div class="h-56 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale hover:grayscale-0" data-alt="A futuristic server room interface with glowing cyan circuit lines and data visualization overlays. The environment is dark and moody, representing high-end technology and cybersecurity. Soft volumetric lighting highlights metallic surfaces and digital nodes, conveying a sense of scale and computational power." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcdmvziins3YIRRRhUMKyivcEGzdlIR6Ju9p-cIYNFsIM-1Bbe-C7inoCo_4I7ShtgkNOgHDOkA5REPx3MAJmG6CxTmAHstZ1Fe8ti4KAqJ3UTh3QuuYSL0IC4eXMkHEa83kF9xcQMGK03FIrOonFA-5DDX_8QORNQxA2Y0uY6blgybzdyGMxmaDHkArrTHHmsanoohrig33Ld_-5MztJEvseY8hU1yKAW0Akgp5wnguHHplP_7ruPZHPkhYKvTPwpkn21uhV9Cn5J"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+<div class="absolute top-4 left-4">
+<div class="bg-[#262626] text-label-code px-2 py-1 rounded-[4px] border border-outline-variant/30">
+                            RUST / AWS / NEXT.JS
+                        </div>
+</div>
+</div>
+<div class="p-6">
+<h5 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">NeuralGrid OS</h5>
+<p class="text-on-surface-variant text-body-sm mt-2">Next-gen distributed operating system for edge computing nodes with sub-ms latency.</p>
+<div class="mt-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span class="font-label-caps text-label-caps tracking-widest text-on-surface">CASE_STUDY</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative bg-[#171717] border border-[#262626] overflow-hidden">
+<div class="h-56 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale hover:grayscale-0" data-alt="Close-up shot of a high-performance computer motherboard with intricate circuitry glowing in a dim dark-mode aesthetic. The lighting is dominated by subtle red and white accents reflecting off silicon components. The depth of field is shallow, focusing on a central processor unit, suggesting precision engineering and micro-architecture design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0NZ0ggCBaUGIc9WUSChIQbboUxHsSaocPxFB1PjBkqby1oYHdXhHDYZH5nFR05HkbHn0n-D_zCDY8VX9Wtz-BfFH8ZfdOHHaQdUnCgzmGH4KdHkp5MzxObryY2Tln0j3JABz_jIxOF2VblLRc84aJyYX6e5tOclGYFMUkV-sg2r2oQbKOUojwRfYl4DweQ9VLvWmCMTphH3x1iRamHEWNP0J2CvR6rV9JZwZFREYNOCDlX4sUKKIfgWnYh8CAam5wpHepna7qVHAc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+<div class="absolute top-4 left-4">
+<div class="bg-[#262626] text-label-code px-2 py-1 rounded-[4px] border border-outline-variant/30">
+                            TYPESCRIPT / DOCKER
+                        </div>
+</div>
+</div>
+<div class="p-6">
+<h5 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Core Infrastructure</h5>
+<p class="text-on-surface-variant text-body-sm mt-2">Scaling a Fintech platform from 10k to 2M active users through microservices redesign.</p>
+<div class="mt-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span class="font-label-caps text-label-caps tracking-widest text-on-surface">CASE_STUDY</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-margin_mobile mt-24 py-16 border-y border-outline-variant/10">
+<div class="flex flex-col gap-8 text-center items-center">
+<h2 class="font-headline-xl text-headline-xl max-w-xs">Ready to build the future?</h2>
+<p class="text-on-surface-variant max-w-sm">I'm currently accepting new high-impact leadership roles or complex engineering projects.</p>
+<a class="group relative inline-flex items-center gap-4 bg-primary text-on-primary px-10 py-5 font-label-caps text-label-caps tracking-widest transition-all hover:pr-12 active:scale-95" href="mailto:hello@architectos.com">
+                    INITIATE_CONTACT
+                    <span class="material-symbols-outlined absolute right-4 opacity-0 group-hover:opacity-100 transition-all">arrow_right_alt</span>
+</a>
+</div>
+</section>
+<!-- Company Logos Footer Sub-section -->
+<section class="px-margin_mobile mt-16 pb-12">
+<p class="font-label-caps text-[10px] text-center opacity-30 mb-8 tracking-[0.3em]">TRUSTED BY INDUSTRY LEADERS</p>
+<div class="flex flex-wrap justify-center gap-8 grayscale opacity-20 contrast-125">
+<span class="font-headline-lg-mobile text-[18px] tracking-tighter">NVIDIA</span>
+<span class="font-headline-lg-mobile text-[18px] tracking-tighter">STRIPE</span>
+<span class="font-headline-lg-mobile text-[18px] tracking-tighter">DATADOG</span>
+<span class="font-headline-lg-mobile text-[18px] tracking-tighter">VERCEL</span>
+</div>
+</section>
+</main>
+<!-- Footer (The Blueprint) -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 py-unit*4">
+<div class="max-w-container_max_width mx-auto flex flex-col md:flex-row justify-between items-center gap-4 px-margin_mobile">
+<span class="font-label-code text-label-code opacity-50">© 2024 ARCHITECT_OS. ALL RIGHTS RESERVED.</span>
+<div class="flex gap-6">
+<a class="font-label-code text-label-code text-on-surface-variant hover:text-on-surface hover:opacity-100 transition-opacity scale-95 active:scale-90" href="#">SOURCE_CODE</a>
+<a class="font-label-code text-label-code text-on-surface-variant hover:text-on-surface hover:opacity-100 transition-opacity scale-95 active:scale-90" href="#">LINKEDIN</a>
+<a class="font-label-code text-label-code text-on-surface-variant hover:text-on-surface hover:opacity-100 transition-opacity scale-95 active:scale-90" href="#">GITHUB</a>
+</div>
+</div>
+</footer>
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            const isOpen = !drawer.classList.contains('-translate-x-full');
+            
+            if (isOpen) {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                overlay.classList.remove('opacity-100');
+            } else {
+                drawer.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            }
+        }
+    </script>
+</body></html>

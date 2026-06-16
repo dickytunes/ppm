@@ -1,30 +1,113 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getSettings } from '../lib/content';
+import { getCaseStudies, getSettings } from '../lib/content';
 
 const settings = await getSettings();
+const caseStudies = await getCaseStudies();
 const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
 
 const title = settings?.name || "Richard";
 const roles = settings?.roles || ["Web Developer", "Engineering Manager"];
 const shortBio = settings?.shortBio || "I build accessible, performant web applications and lead engineering teams to deliver exceptional digital experiences.";
+const featured = caseStudies.slice(0, 3);
 ---
-<BaseLayout title={`${title} – Portfolio`} current="home">
-  <section class="max-w-6xl mx-auto px-5 lg:px-8 py-16 pb-12">
-    <p class="text-xs uppercase tracking-[0.22em] text-muted mb-3">Portfolio</p>
-    <h1 class="text-[clamp(2.5rem,4vw,3.5rem)] leading-tight font-semibold mb-4 bg-gradient-to-r from-off-white to-muted bg-clip-text text-transparent">
-      Conversational, pragmatic engineering leadership.
-    </h1>
-    <p class="max-w-xl text-muted text-[0.95rem] leading-relaxed mb-6">
-      I&apos;m {title}, a {roles.join(' and ')}. {shortBio}
-    </p>
-    <div class="flex flex-wrap gap-3">
-      <a href={`${base}/case-studies`} class="inline-flex items-center justify-center px-[1.1rem] py-2 rounded-full bg-off-white text-off-black text-[0.85rem] font-medium shadow-[0_24px_80px_rgba(0,0,0,0.9)] transition-all duration-150 hover:bg-white hover:-translate-y-0.5">
-        View case studies
-      </a>
-      <a href={`${base}/contact`} class="inline-flex items-center justify-center px-[1.1rem] py-2 rounded-full border border-border text-off-white text-[0.85rem] font-medium transition-all duration-150 hover:border-muted hover:bg-muted/10">
-        Get in touch
-      </a>
+
+<BaseLayout title={`${title} – Portfolio`} current="portfolio">
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex flex-col justify-center px-margin-mobile md:px-gutter overflow-hidden">
+    <!-- Ambient glow -->
+    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none animate-drift"></div>
+    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-container mx-auto w-full flex flex-col gap-6 py-16 lg:py-24">
+      <!-- Availability badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container/30 border border-outline-variant/30 rounded-full w-fit">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-mono text-[11px] text-primary">AVAILABLE FOR PROJECTS</span>
+      </div>
+
+      <!-- Headline -->
+      <div class="flex flex-col">
+        <h2 class="font-sans text-headline-lg-mobile md:text-headline-lg text-on-surface-variant">Engineering Manager &amp;</h2>
+        <h1 class="font-sans text-headline-xl text-on-surface -mt-1 md:-mt-2">Web Developer.</h1>
+      </div>
+
+      <!-- Name / Location panel -->
+      <div class="flex flex-col gap-1 border-l border-outline-variant/30 pl-4 py-2">
+        <p class="font-label-caps text-label-caps text-primary tracking-widest">{title.toUpperCase()}</p>
+        <p class="font-mono text-label-code opacity-60">LONDON, UK // 51.5074° N, 0.1278° W</p>
+      </div>
+
+      <!-- Bio -->
+      <p class="text-on-surface-variant max-w-[90%] md:max-w-lg leading-relaxed text-body-md">
+        {shortBio}
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center gap-4 mt-4">
+        <a
+          href={`${base}/case-studies`}
+          class="bg-off-white text-off-black px-8 py-3 font-label-caps text-label-caps transition-all active:scale-95 hover:bg-white"
+        >
+          VIEW_PORTFOLIO
+        </a>
+        <button
+          class="border border-outline-variant text-on-surface px-6 py-3 font-label-caps text-label-caps flex items-center gap-2 active:bg-surface-container-high hover:border-on-surface-variant transition-all"
+        >
+          RESUME
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </section>
+
+  <!-- Featured Case Studies -->
+  {featured.length > 0 && (
+    <section class="px-margin-mobile md:px-gutter pb-20">
+      <div class="max-w-container mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <p class="font-mono text-[11px] text-primary/80 uppercase tracking-widest mb-2">Featured Work</p>
+            <h2 class="font-sans text-headline-lg-mobile md:text-headline-lg text-on-surface">Selected Case Studies</h2>
+          </div>
+          <a
+            href={`${base}/case-studies`}
+            class="hidden sm:flex items-center gap-2 font-mono text-label-code text-on-surface-variant hover:text-primary transition-colors"
+          >
+            View all
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {featured.map((study) => (
+            <a
+              href={`${base}/case-studies/${study.slug}`}
+              class="glass-card p-6 flex flex-col gap-4 group active:scale-[0.98] transition-transform duration-200"
+            >
+              <div class="flex justify-between items-start">
+                <span class="font-mono text-[11px] text-primary/80 uppercase tracking-widest">{study.role}</span>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-on-surface-variant/40 group-hover:text-primary transition-colors">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </div>
+              <h3 class="font-sans text-headline-lg-mobile text-on-surface leading-tight">{study.title}</h3>
+              <p class="font-sans text-body-sm text-on-surface-variant line-clamp-2">{study.summary}</p>
+              {study.technologies.length > 0 && (
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  {study.technologies.slice(0, 4).map((tech) => (
+                    <span class="bg-surface-container-high text-on-surface px-2 py-1 font-mono text-[10px] rounded">{tech}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 </BaseLayout>

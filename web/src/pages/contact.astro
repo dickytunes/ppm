@@ -1,76 +1,155 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const formEndpoint = 'https://formspree.io/f/xbldlbwk'; // replace with your Formspree form ID if needed
+const formEndpoint = 'https://formspree.io/f/xbldlbwk';
 const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
 const submitted = new URL(Astro.request.url).searchParams.get('submitted');
 ---
-<BaseLayout title="Contact" current="contact">
-  <section class="max-w-6xl mx-auto px-5 lg:px-8 py-12 pb-16">
-    <h1 class="text-[1.6rem] font-semibold mb-3">Let&apos;s talk</h1>
-    <p class="text-muted text-[0.95rem] mb-4">
-      Share a bit about what you&apos;re working on or looking for and I&apos;ll get back to you.
-    </p>
-    {submitted === '1' && (
-      <div class="mb-6 rounded-lg border border-border bg-surface/70 px-4 py-3 text-off-white" role="status">
-        Thanks — your message was sent. I&apos;ll respond as soon as I can.
+<BaseLayout title="Contact – Portfolio" current="contact">
+  <section class="px-margin-mobile md:px-gutter py-16 lg:py-24">
+    <div class="max-w-container mx-auto">
+      <!-- Hero -->
+      <div class="mb-12">
+        <h1 class="font-sans text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Get in Touch</h1>
+        <p class="text-on-surface-variant font-sans text-body-sm max-w-md">
+          Whether you're looking for technical leadership, architectural consultation, or just want to discuss the future of engineering management.
+        </p>
       </div>
-    )}
-    <form
-      method="POST"
-      action={formEndpoint}
-      accept-charset="UTF-8"
-      class="max-w-lg p-6 rounded-2xl bg-surface border border-border shadow-[0_24px_80px_rgba(0,0,0,0.9)]"
-    >
-      <div class="hidden" aria-hidden="true">
-        <label>
-          Don&apos;t fill this out if you&apos;re human
-          <input name="_honeypot" type="text" />
-        </label>
+
+      <!-- Availability indicator -->
+      <div class="flex items-center gap-2 mb-10">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-mono text-label-code text-on-surface">Available for projects</span>
       </div>
-      <input type="hidden" name="_redirect" value={`${base}/contact?submitted=1`} />
-      <div class="mb-4">
-        <label class="block text-[0.85rem] font-medium mb-1.5" for="name">Name</label>
-        <input
-          id="name"
-          name="name"
-          required
-          class="w-full rounded-lg border border-border bg-off-black px-3 py-2 text-[0.85rem] text-off-white focus:outline-none focus:ring-2 focus:ring-off-white"
-        />
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Form -->
+        <div>
+          {submitted === '1' && (
+            <div class="mb-6 p-4 border border-emerald-500/30 bg-emerald-500/5" role="status">
+              <p class="font-mono text-label-code text-emerald-400">MESSAGE_SENT_SUCCESSFULLY</p>
+              <p class="font-sans text-body-sm text-on-surface-variant mt-1">Thanks — your message was sent. I'll respond as soon as I can.</p>
+            </div>
+          )}
+
+          <form
+            method="POST"
+            action={formEndpoint}
+            accept-charset="UTF-8"
+            class="space-y-6"
+            id="contact-form"
+          >
+            <!-- Honeypot -->
+            <div class="hidden" aria-hidden="true">
+              <label>
+                Don't fill this out if you're human
+                <input name="_honeypot" type="text" />
+              </label>
+            </div>
+            <input type="hidden" name="_redirect" value={`${base}/contact?submitted=1`} />
+
+            <!-- Name -->
+            <div class="flex flex-col gap-2">
+              <label class="font-label-caps text-label-caps text-on-surface-variant transition-colors" for="name">NAME</label>
+              <input
+                id="name"
+                name="name"
+                required
+                placeholder="John Doe"
+                class="bg-surface-container-lowest border border-outline-variant/30 px-4 py-3 font-mono text-label-code text-on-surface placeholder:text-on-surface-variant/30 transition-all focus:outline-none focus:border-primary"
+                style="box-shadow: 0 0 0 0px rgba(201, 198, 197, 0.2);"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="flex flex-col gap-2">
+              <label class="font-label-caps text-label-caps text-on-surface-variant transition-colors" for="email">EMAIL</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                required
+                placeholder="john@example.com"
+                class="bg-surface-container-lowest border border-outline-variant/30 px-4 py-3 font-mono text-label-code text-on-surface placeholder:text-on-surface-variant/30 transition-all focus:outline-none focus:border-primary"
+              />
+            </div>
+
+            <!-- Message -->
+            <div class="flex flex-col gap-2">
+              <label class="font-label-caps text-label-caps text-on-surface-variant transition-colors" for="message">MESSAGE</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                placeholder="Tell me about your project..."
+                class="bg-surface-container-lowest border border-outline-variant/30 px-4 py-3 font-sans text-body-md text-on-surface placeholder:text-on-surface-variant/30 transition-all resize-none focus:outline-none focus:border-primary"
+              ></textarea>
+            </div>
+
+            <!-- Privacy consent -->
+            <div class="flex items-start gap-3">
+              <input
+                id="consent"
+                type="checkbox"
+                required
+                class="mt-0.5 accent-primary"
+              />
+              <label for="consent" class="font-sans text-body-sm text-on-surface-variant/70">
+                I consent to you storing my name and email for the purposes of responding to this enquiry. See privacy note below.
+              </label>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="bg-off-white text-off-black px-8 py-3 font-label-caps text-label-caps transition-all active:scale-95 hover:bg-white"
+            >
+              SEND_MESSAGE
+            </button>
+          </form>
+
+          <!-- Mailto fallback -->
+          <p class="mt-8 font-sans text-body-sm text-on-surface-variant/60">
+            Prefer email?{' '}
+            <a href="mailto:you@example.com?subject=Portfolio%20enquiry" class="underline hover:text-on-surface transition-colors">
+              you@example.com
+            </a>
+          </p>
+        </div>
+
+        <!-- Sidebar info -->
+        <div class="lg:pt-2">
+          <div class="glass-card p-6 flex flex-col gap-5">
+            <div>
+              <p class="font-mono text-[10px] text-on-surface-variant/40 uppercase tracking-widest mb-1">Response Time</p>
+              <p class="font-sans text-body-sm text-on-surface">Typically within 24–48 hours</p>
+            </div>
+            <div>
+              <p class="font-mono text-[10px] text-on-surface-variant/40 uppercase tracking-widest mb-1">Location</p>
+              <p class="font-sans text-body-sm text-on-surface">London, UK (Remote-friendly)</p>
+            </div>
+            <div>
+              <p class="font-mono text-[10px] text-on-surface-variant/40 uppercase tracking-widest mb-1">Privacy</p>
+              <p class="font-sans text-body-sm text-on-surface-variant/70">
+                Your data is submitted via Formspree and will only be used to respond to your enquiry. It will not be shared or used for marketing.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mb-4">
-        <label class="block text-[0.85rem] font-medium mb-1.5" for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          required
-          class="w-full rounded-lg border border-border bg-off-black px-3 py-2 text-[0.85rem] text-off-white focus:outline-none focus:ring-2 focus:ring-off-white"
-        />
-      </div>
-      <div class="mb-5">
-        <label class="block text-[0.85rem] font-medium mb-1.5" for="message">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          rows="5"
-          required
-          class="w-full rounded-lg border border-border bg-off-black px-3 py-2 text-[0.85rem] text-off-white resize-y focus:outline-none focus:ring-2 focus:ring-off-white"
-        ></textarea>
-      </div>
-      <button
-        type="submit"
-        class="inline-flex items-center justify-center px-[1.1rem] py-2 rounded-full bg-off-white text-off-black text-[0.85rem] font-medium shadow-[0_24px_80px_rgba(0,0,0,0.9)] transition-all duration-150 hover:bg-white hover:-translate-y-0.5"
-      >
-        Send message
-      </button>
-    </form>
-    <p class="text-muted text-[0.8rem] mt-7 max-w-lg">
-      Prefer email? You can also reach me at
-      <a href="mailto:you@example.com?subject=Portfolio%20enquiry" class="underline text-off-white hover:text-white">
-        you@example.com
-      </a>
-      . The form posts to a third-party provider (Formspree); update the endpoint and email address in this file as needed.
-    </p>
+    </div>
   </section>
 </BaseLayout>
+
+<script>
+  // Focus ring effect on input groups
+  document.querySelectorAll('input:focus-visible, textarea:focus-visible').forEach((el) => {
+    el.addEventListener('focus', () => {
+      el.style.boxShadow = '0 0 0 1px rgba(201, 198, 197, 0.2)';
+    });
+    el.addEventListener('blur', () => {
+      el.style.boxShadow = '0 0 0 0px rgba(201, 198, 197, 0.2)';
+    });
+  });
+</script>

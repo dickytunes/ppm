@@ -1,0 +1,17 @@
+# Technical Specification – Personal CV & Portfolio Website
+
+## 1. Overview
+- **Purpose**: Redevelop the personal CV/portfolio site to clearly present professional profile as a web developer and software engineering manager.
+- **Look & Feel**: Dark, off-black theme, vertical navigation (left-side on desktop, hamburger on mobile), off-white UI elements, subtle gradients/shadows.
+
+## 4.1 Functional Requirements
+1. **Home / Landing**: Hero, summary, featured case studies.
+2. **Case Studies**: Listing (title, desc, tech, role) and Detail view (problem, approach, outcome).
+3. **Contact**: Form with validation, privacy note, mailto fallback.
+4. **Global**: Left-side vertical nav, sub-footer with company logos, main footer.
+
+## 5.1 Site Map
+- `/` – Home / Landing
+- `/case-studies` – Case studies listing
+- `/case-studies/[slug]` – Individual case study detail
+- `/contact` – Contact (form + info)

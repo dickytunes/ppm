@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Next-Gen Fintech Platform | Case Study</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "on-secondary-container": "#b5b5b5",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "on-background": "#e3e2e2",
+                    "surface-dim": "#121314",
+                    "surface-bright": "#393939",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#343535",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "error-container": "#93000a",
+                    "secondary": "#c6c6c6",
+                    "tertiary-fixed": "#e4e2e1",
+                    "inverse-surface": "#e3e2e2",
+                    "inverse-primary": "#5f5e5e",
+                    "on-tertiary": "#303030",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-surface": "#e3e2e2",
+                    "on-secondary": "#2f3131",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-container-low": "#1b1c1c",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "outline-variant": "#444748",
+                    "tertiary": "#c8c6c5",
+                    "background": "#121314",
+                    "inverse-on-surface": "#303031",
+                    "on-surface-variant": "#c4c7c7",
+                    "primary-fixed": "#e5e2e1",
+                    "primary-container": "#0a0a0a",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "surface-container": "#1f2020",
+                    "on-primary": "#313030",
+                    "surface-tint": "#c9c6c5",
+                    "surface-container-lowest": "#0d0e0f",
+                    "surface-variant": "#343535",
+                    "primary": "#c9c6c5",
+                    "surface": "#121314",
+                    "secondary-container": "#454747",
+                    "on-primary-container": "#7b7979",
+                    "outline": "#8e9192",
+                    "on-tertiary-container": "#7a7979",
+                    "on-error": "#690005",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-container-high": "#292a2a",
+                    "error": "#ffb4ab",
+                    "tertiary-container": "#0a0a0a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin_mobile": "16px",
+                    "unit": "8px",
+                    "container_max_width": "1200px",
+                    "nav_width_desktop": "280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "label-code": ["JetBrains Mono"],
+                    "body-md": ["Geist"],
+                    "body-sm": ["Geist"],
+                    "headline-xl": ["Geist"],
+                    "headline-lg": ["Geist"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-code": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #262626;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md selection:bg-primary selection:text-primary-container">
+<!-- Top Navigation (Context Specific: Detailed View Suppression of Drawer) -->
+<header class="fixed top-0 w-full z-50 h-16 bg-surface/80 backdrop-blur-md flex justify-between items-center px-margin_mobile border-b border-outline-variant/30">
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span class="font-label-code text-label-code">BACK TO LISTING</span>
+</a>
+<div class="font-label-code text-label-code tracking-tighter text-on-surface opacity-50">ENGINEER_MANAGER</div>
+</header>
+<main class="pt-24 pb-16 px-margin_mobile overflow-x-hidden">
+<!-- Hero Section -->
+<section class="mb-12">
+<div class="mb-6 flex flex-wrap gap-2">
+<span class="bg-secondary-container/20 text-primary font-label-code text-label-code px-2 py-1 rounded">REACT</span>
+<span class="bg-secondary-container/20 text-primary font-label-code text-label-code px-2 py-1 rounded">NODE.JS</span>
+<span class="bg-secondary-container/20 text-primary font-label-code text-label-code px-2 py-1 rounded">AWS</span>
+<span class="bg-secondary-container/20 text-primary font-label-code text-label-code px-2 py-1 rounded">KUBERNETES</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Next-Gen Fintech Platform</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70 mb-8 uppercase">Role: Lead Software Engineer</p>
+<div class="relative w-full aspect-video rounded-xl overflow-hidden border border-outline-variant/30 mb-12">
+<img class="w-full h-full object-cover" data-alt="A sophisticated data visualization dashboard showing financial market trends with glowing white lines against a deep charcoal background. The interface is clean and architectural, utilizing thin grid lines and minimal monospaced typography. Soft ambient lighting creates a high-end tech atmosphere with subtle depth and cinematic shadows in an off-black setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXleW6S6oSt7m4d4BVb76g7xSK8P9bjgo0QKa1Ky0eZ2wIUzrrEdPKGUsz1JR-0nn-Px65mvUx_tVpbh8DKIneAKvcWY8_eVdoa3ShyjalRw9eQ2hUOYSfo3UZJIlheN6BVtHbxj_dCOYFOXcvdoySKefO5ICL2gC3aejShURjZ789ryINhKc3JHPxa4ZSaH4WuamfsQYFmD8CF_87LP_9HJ3JzmM-qICEtEUudv3qe2-N5n6CuEdc9wXPA-fU-BBl7qPDHLaAQcg4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+</div>
+</section>
+<!-- Content Grid (Bento Style Mobile) -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Problem Section -->
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="warning">warning</span>
+<h2 class="font-label-caps text-label-caps text-on-surface">THE PROBLEM</h2>
+</div>
+<h3 class="font-headline-lg-mobile text-[20px] leading-tight text-on-surface">Stagnating Growth via Legacy Monolith</h3>
+<p class="text-on-surface-variant font-body-sm opacity-80">
+                    The existing platform was built on a decade-old PHP monolith that suffered from severe technical debt. Deployment cycles were measured in weeks, and scaling for peak market volatility was nearly impossible without manual intervention.
+                </p>
+<div class="mt-4 p-4 bg-surface-container-lowest border-l-2 border-primary">
+<p class="font-label-code text-label-code italic opacity-60">"The cost of change had surpassed the value of maintenance."</p>
+</div>
+</div>
+<!-- Approach Section -->
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="architecture">architecture</span>
+<h2 class="font-label-caps text-label-caps text-on-surface">THE APPROACH</h2>
+</div>
+<h3 class="font-headline-lg-mobile text-[20px] leading-tight text-on-surface">Domain-Driven Microservices Migration</h3>
+<p class="text-on-surface-variant font-body-sm opacity-80">
+                    We architected a phased strangler-fig migration to Node.js microservices. By leveraging Kubernetes on AWS, we implemented a self-healing infrastructure that decoupled core transaction processing from the UI layer.
+                </p>
+<ul class="space-y-3 mt-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span class="font-body-sm">Containerization of legacy edge-cases for stability.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-sm mt-1" data-icon="check_circle">check_circle</span>
+<span class="font-body-sm">CI/CD pipeline overhaul with automated testing.</span>
+</li>
+</ul>
+</div>
+<!-- Visual Break -->
+<div class="relative h-64 rounded-xl overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="Close up detail of high-performance server hardware with glowing blue and white indicator lights in a dark data center. The perspective is low and dramatic, highlighting the precision-engineered textures and metallic surfaces. The color palette is restricted to deep blacks and clinical whites with a soft tech-glow effect to maintain a sophisticated professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCDGeILhVX-NHQiXIklgFXr6_hKPUwYjXiw0_CJLs7atWNWnucz3awBU_ZvzYHEElRoeoaJXzvQuAksPV4-qG9cz95U5DxSDO-mOC4EiA68VDhiRcRvhef0M4kqP4gmoTE-b9Ynwcvntj_NMzM5ay8b9NnDnHBVuyMWAm3oMvi3GC3zLWcs6dqiltABl4b3849Yp28IA4fmVTazUlOMQDmoILqfk8LZJSxlV5HNNdA46mX163ppIqoog9NNw7VHy7toEmTpqpsWzNm"/>
+</div>
+<!-- Outcome Section -->
+<div class="bg-primary text-primary-container p-6 rounded-xl flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<h2 class="font-label-caps text-label-caps opacity-80">THE OUTCOME</h2>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[48px] font-headline-xl leading-none">40%</span>
+<span class="font-label-caps text-label-caps uppercase">Faster Deployment</span>
+</div>
+<p class="font-body-sm font-medium">
+                    The migration resulted in zero downtime during transitions and enabled the engineering team to deploy up to 15 times per day—a massive leap from the previous bi-weekly schedule.
+                </p>
+<div class="mt-4 pt-4 border-t border-primary-container/20 flex justify-between">
+<div>
+<div class="text-[20px] font-bold">99.99%</div>
+<div class="text-[10px] uppercase opacity-70">Uptime</div>
+</div>
+<div>
+<div class="text-[20px] font-bold">2.4s</div>
+<div class="text-[10px] uppercase opacity-70">Avg. Latency</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component from JSON Context -->
+<footer class="bg-surface-container-lowest py-8 border-t border-outline-variant/10">
+<div class="max-w-container_max_width mx-auto px-margin_mobile flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<div class="font-label-code text-label-code text-primary opacity-50 tracking-widest">ARCHITECT_OS</div>
+<div class="font-label-code text-label-code text-on-surface-variant text-[10px]">© 2024 ARCHITECT_OS. ALL RIGHTS RESERVED.</div>
+</div>
+<div class="flex flex-wrap gap-4">
+<a class="font-label-code text-label-code text-on-surface-variant hover:text-on-surface transition-opacity active:scale-90 duration-200" href="#">SOURCE_CODE</a>
+<a class="font-label-code text-label-code text-on-surface-variant hover:text-on-surface transition-opacity active:scale-90 duration-200" href="#">LINKEDIN</a>
+<a class="font-label-code text-label-code text-on-surface-variant hover:text-on-surface transition-opacity active:scale-90 duration-200" href="#">GITHUB</a>
+<a class="font-label-code text-label-code text-on-surface-variant hover:text-on-surface transition-opacity active:scale-90 duration-200" href="#">READCV</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for scroll depth progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            // Could add a progress bar here if needed
+        });
+
+        // Simple Fade-in Observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-panel').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "all 0.6s cubic-bezier(0.22, 1, 0.36, 1)";
+            observer.observe(el);
+        });
+    </script>
+</body></html>

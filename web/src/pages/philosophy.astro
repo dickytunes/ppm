@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Philosophy – Portfolio" current="philosophy">
+  <section class="px-margin-mobile md:px-gutter py-16 lg:py-24">
+    <div class="max-w-container mx-auto flex flex-col gap-8">
+      <!-- Header -->
+      <div class="flex flex-col gap-2 relative">
+        <div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+        <h1 class="font-sans text-headline-lg-mobile md:text-headline-lg text-on-surface">Engineering Philosophy</h1>
+        <p class="text-on-surface-variant font-sans text-body-sm max-w-md">
+          Principles that guide how I build teams, systems, and products.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Principle 1 -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] text-primary/60">01</span>
+            <h2 class="font-label-caps text-label-caps text-on-surface">Simplicity Over Cleverness</h2>
+          </div>
+          <p class="text-on-surface-variant font-sans text-body-sm">
+            The best solutions are the simplest ones that meet the requirements. I prioritise readability, maintainability, and clarity over clever abstractions. Code is read far more often than it is written.
+          </p>
+        </div>
+
+        <!-- Principle 2 -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] text-primary/60">02</span>
+            <h2 class="font-label-caps text-label-caps text-on-surface">Ship to Learn</h2>
+          </div>
+          <p class="text-on-surface-variant font-sans text-body-sm">
+            Shipping early and iterating based on real feedback beats analysis paralysis. I favour small, frequent, reversible changes that de-risk delivery and create tight feedback loops.
+          </p>
+        </div>
+
+        <!-- Principle 3 -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] text-primary/60">03</span>
+            <h2 class="font-label-caps text-label-caps text-on-surface">People Over Process</h2>
+          </div>
+          <p class="text-on-surface-variant font-sans text-body-sm">
+            Great teams are built on trust, psychological safety, and clear purpose. Process exists to support people, not constrain them. I invest in mentorship, pairing, and creating environments where engineers thrive.
+          </p>
+        </div>
+
+        <!-- Principle 4 -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] text-primary/60">04</span>
+            <h2 class="font-label-caps text-label-caps text-on-surface">Pragmatic Over Dogmatic</h2>
+          </div>
+          <p class="text-on-surface-variant font-sans text-body-sm">
+            Every technical decision involves trade-offs. I evaluate choices in context — weighing business needs, team capacity, and long-term maintainability. No single architecture or tool fits every problem.
+          </p>
+        </div>
+
+        <!-- Principle 5 -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] text-primary/60">05</span>
+            <h2 class="font-label-caps text-label-caps text-on-surface">Own the Outcome</h2>
+          </div>
+          <p class="text-on-surface-variant font-sans text-body-sm">
+            Engineers should understand the "why" behind their work. I encourage teams to engage with product thinking, user research, and business context — not just tickets. Ownership drives quality.
+          </p>
+        </div>
+
+        <!-- Principle 6 -->
+        <div class="glass-card p-6 flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-[11px] text-primary/60">06</span>
+            <h2 class="font-label-caps text-label-caps text-on-surface">Accessibility Is Non-Negotiable</h2>
+          </div>
+          <p class="text-on-surface-variant font-sans text-body-sm">
+            The web is for everyone. I bake accessibility into every stage of design and development — from semantic HTML and ARIA to keyboard navigation and colour contrast. It's not a feature; it's a baseline.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

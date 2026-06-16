@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stackCategories = [
+  {
+    label: 'Languages',
+    items: ['TypeScript', 'JavaScript', 'Go', 'Python', 'SQL'],
+  },
+  {
+    label: 'Frontend',
+    items: ['React', 'Next.js', 'Astro', 'Tailwind CSS', 'Storybook'],
+  },
+  {
+    label: 'Backend & APIs',
+    items: ['Node.js', 'Express', 'GraphQL', 'REST', 'gRPC'],
+  },
+  {
+    label: 'Data & Storage',
+    items: ['PostgreSQL', 'Redis', 'MongoDB', 'Elasticsearch'],
+  },
+  {
+    label: 'Infrastructure',
+    items: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions'],
+  },
+  {
+    label: 'Observability',
+    items: ['Datadog', 'Sentry', 'OpenTelemetry', 'Grafana', 'Prometheus'],
+  },
+  {
+    label: 'Accessibility & Testing',
+    items: ['Jest', 'Playwright', 'Cypress', 'axe-core', 'Lighthouse'],
+  },
+  {
+    label: 'Design & Collaboration',
+    items: ['Figma', 'Linear', 'Notion', 'GitHub', 'Slack'],
+  },
+];
+---
+
+<BaseLayout title="Stack – Portfolio" current="stack">
+  <section class="px-margin-mobile md:px-gutter py-16 lg:py-24">
+    <div class="max-w-container mx-auto flex flex-col gap-8">
+      <!-- Header -->
+      <div class="flex flex-col gap-2 relative">
+        <div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+        <h1 class="font-sans text-headline-lg-mobile md:text-headline-lg text-on-surface">Technical Stack</h1>
+        <p class="text-on-surface-variant font-sans text-body-sm max-w-md">
+          Tools, languages, and platforms I use to build and lead.
+        </p>
+      </div>
+
+      <!-- Stack Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {stackCategories.map((category) => (
+          <div class="glass-card p-6 flex flex-col gap-4">
+            <h2 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">{category.label}</h2>
+            <ul class="flex flex-wrap gap-2">
+              {category.items.map((item) => (
+                <li>
+                  <span class="bg-surface-container-high text-on-surface px-2 py-1 font-mono text-[10px] rounded">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- Approach note -->
+      <div class="mt-8 p-6 border-l-2 border-primary bg-secondary-container/10">
+        <p class="font-mono text-label-code text-on-surface-variant italic opacity-70">
+          "The stack serves the problem — not the other way around. I pick the right tool for the job, not the shiniest one."
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
