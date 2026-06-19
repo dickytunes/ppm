@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Decap CMS</title>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script src="https://unpkg.com/decap-cms@3.1.8/dist/decap-cms.js"></script>
+  </head>
+  <body>
+    <script>
+      (function initDecap() {
+        var url = new URL(window.location.href);
+        var configUrl = './config.yml';
+
+        if (!url.searchParams.get('config')) {
+          url.searchParams.set('config', configUrl);
+          window.location.replace(url.toString());
+          return;
+        }
+
+        function boot() {
+          if (typeof window.CMS === 'undefined') {
+            setTimeout(boot, 100);
+            return;
+          }
+
+          var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+          window.CMS.init({
+            config: {
+              load_config_file: true,
+              config_url: url.searchParams.get('config') || configUrl,
+              local_backend: isLocal,
+              backend: {
+                name: 'github',
+                repo: 'dickytunes/ppm',
+                branch: 'master',
+                auth_type: 'pkce',
+                app_id: 'Ov23lid7cVp43gNV82f8',
+              },
+              media_folder: 'public/uploads',
+              public_folder: '/uploads',
+            },
+          });
+        }
+
+        boot();
+      })();
+    </script>
+  </body>
+</html>

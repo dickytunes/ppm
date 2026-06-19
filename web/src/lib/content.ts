@@ -12,9 +12,18 @@ export interface CaseStudy {
   body: string;
   technologies: string[];
   role: string;
-  outcomes: string;
   images: string[];
   links: { label: string; url: string }[];
+  // Bento grid fields
+  problemHeadline: string;
+  problemDescription: string;
+  problemQuote?: string;
+  approachHeadline: string;
+  approachDescription: string;
+  approachSteps: string[];
+  outcomeMetric: string;
+  outcomeMetricLabel: string;
+  outcomeDescription: string;
 }
 
 export interface Company {
@@ -56,9 +65,17 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
           body: htmlBody || '',
           technologies: data.technologies || [],
           role: data.role || '',
-          outcomes: data.outcomes || '',
           images: data.images || [],
           links: data.links || [],
+          problemHeadline: data.problemHeadline || '',
+          problemDescription: data.problemDescription || '',
+          problemQuote: data.problemQuote || undefined,
+          approachHeadline: data.approachHeadline || '',
+          approachDescription: data.approachDescription || '',
+          approachSteps: data.approachSteps || [],
+          outcomeMetric: data.outcomeMetric || '',
+          outcomeMetricLabel: data.outcomeMetricLabel || '',
+          outcomeDescription: data.outcomeDescription || '',
         } as CaseStudy;
       })
     );

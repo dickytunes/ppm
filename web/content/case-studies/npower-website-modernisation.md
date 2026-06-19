@@ -8,9 +8,21 @@ technologies:
   - Web Standards
   - Accessibility (WAI-ARIA)
 role: Frontend Developer
-outcomes: Won Guild of Accessible Websites Site of the Month award, achieved WAG Level 3 compliance, modernised 6 major websites.
 images:
   - /uploads/npower-website.jpg
+problemHeadline: Six Sites Trapped in Table-Based Markup
+problemDescription: npower's entire web estate — the corporate site plus five major campaign microsites — was built on legacy table-based HTML. The markup was bloated, inaccessible to assistive technology, and impossible to maintain consistently across properties. Accessibility wasn't an afterthought — it was entirely absent.
+problemQuote: "These sites were live, revenue-generating, and fundamentally broken for a significant portion of users."
+approachHeadline: Standards-Based Modernisation Across the Portfolio
+approachDescription: I led a systematic conversion of all six properties from table-based layouts to semantic HTML with external CSS, following W3C Web Standards. Accessibility was embedded from day one — using proper heading hierarchies, ARIA landmarks, and keyboard navigation patterns. Each site was tested with real assistive technology.
+approachSteps:
+  - Converted 6 sites from table layouts to semantic HTML/CSS
+  - Implemented WAI-ARIA landmarks and proper heading structures
+  - Tested all sites with screen readers and keyboard-only navigation
+  - Established reusable, accessible component patterns for future projects
+outcomeMetric: WAG L3
+outcomeMetricLabel: Accessibility Compliance
+outcomeDescription: Won the Guild of Accessible Websites Site of the Month award, achieved WAG Level 3 compliance across all properties, and modernised 6 major websites that became the foundation for npower's digital presence for years to follow.
 links:
   - label: Guild of Accessible Websites
     url: https://www.gateweb.org.uk

@@ -19,23 +19,19 @@ const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
 ---
 
 <BaseLayout title={`${study.title} – Case Study`} current="portfolio">
-  <!-- Top nav bar for detail view -->
-  <header class="sticky top-0 z-40 h-16 bg-surface/80 backdrop-blur-md flex justify-between items-center px-margin-mobile md:px-gutter border-b border-outline-variant/30">
+  <article class="pt-16 lg:pt-0 pb-16 px-margin-mobile md:px-gutter overflow-x-hidden">
+    <!-- Back link -->
     <a
       href={`${base}/case-studies`}
-      class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors"
+      class="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors mb-8"
     >
       <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
       <span class="font-mono text-label-code">BACK TO LISTING</span>
     </a>
-    <div class="font-mono text-label-code tracking-tighter text-on-surface opacity-50">ENGINEER_MANAGER</div>
-  </header>
-
-  <article class="px-margin-mobile md:px-gutter py-16 overflow-x-hidden">
     <div class="max-w-container mx-auto">
-      <!-- Tech tags -->
+      <!-- Hero: Tech tags -->
       {study.technologies.length > 0 && (
         <div class="mb-6 flex flex-wrap gap-2">
           {study.technologies.map((tech: string) => (
@@ -44,25 +40,21 @@ const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
         </div>
       )}
 
-      <!-- Title + Role -->
+      <!-- Hero: Title + Role -->
       <h1 class="font-sans text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">{study.title}</h1>
       <p class="font-label-caps text-label-caps text-on-surface-variant opacity-70 mb-8 uppercase">Role: {study.role}</p>
 
-      <!-- Hero image placeholder -->
+      <!-- Hero: Image -->
       {study.images.length > 0 && (
         <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-outline-variant/30 mb-12 bg-surface-container-low">
-          <img
-            src={`${base}${study.images[0]}`}
-            alt={study.title}
-            class="w-full h-full object-cover"
-          />
+          <img src={`${base}${study.images[0]}`} alt={study.title} class="w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         </div>
       )}
 
       <!-- Bento Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Problem -->
+      <div class="grid grid-cols-1 gap-6">
+        <!-- PROBLEM CARD -->
         <div class="glass-card p-6 flex flex-col gap-4">
           <div class="flex items-center gap-3">
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary">
@@ -70,13 +62,16 @@ const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
             </svg>
             <h2 class="font-label-caps text-label-caps text-on-surface">THE PROBLEM</h2>
           </div>
-          <h3 class="font-sans text-[20px] leading-tight text-on-surface">{study.title}</h3>
-          <p class="text-on-surface-variant font-sans text-body-sm opacity-80">
-            {study.summary}
-          </p>
+          <h3 class="font-sans text-[20px] leading-tight text-on-surface">{study.problemHeadline}</h3>
+          <p class="text-on-surface-variant font-sans text-body-sm opacity-80">{study.problemDescription}</p>
+          {study.problemQuote && (
+            <div class="mt-4 p-4 bg-surface-container-lowest border-l-2 border-primary">
+              <p class="font-mono text-label-code italic opacity-60">"{study.problemQuote}"</p>
+            </div>
+          )}
         </div>
 
-        <!-- Approach -->
+        <!-- APPROACH CARD -->
         <div class="glass-card p-6 flex flex-col gap-4">
           <div class="flex items-center gap-3">
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary">
@@ -84,33 +79,31 @@ const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
             </svg>
             <h2 class="font-label-caps text-label-caps text-on-surface">THE APPROACH</h2>
           </div>
-          <h3 class="font-sans text-[20px] leading-tight text-on-surface">Technical Strategy</h3>
-          <p class="text-on-surface-variant font-sans text-body-sm opacity-80">
-            {study.outcomes || study.summary}
-          </p>
-          {study.technologies.length > 0 && (
+          <h3 class="font-sans text-[20px] leading-tight text-on-surface">{study.approachHeadline}</h3>
+          <p class="text-on-surface-variant font-sans text-body-sm opacity-80">{study.approachDescription}</p>
+          {study.approachSteps.length > 0 && (
             <ul class="space-y-3 mt-2">
-              {study.technologies.slice(0, 3).map((tech: string) => (
+              {study.approachSteps.map((step: string) => (
                 <li class="flex items-start gap-2">
                   <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary mt-0.5 shrink-0">
                     <path d="M20 6 9 17l-5-5"/>
                   </svg>
-                  <span class="font-sans text-body-sm text-on-surface-variant">{tech}</span>
+                  <span class="font-sans text-body-sm text-on-surface-variant">{step}</span>
                 </li>
               ))}
             </ul>
           )}
         </div>
 
-        <!-- Visual break (second image or spacer) -->
+        <!-- Visual Break (second image) -->
         {study.images.length > 1 && (
-          <div class="relative h-64 rounded-xl overflow-hidden border border-outline-variant/30 md:col-span-2">
+          <div class="relative h-64 rounded-xl overflow-hidden border border-outline-variant/30">
             <img src={`${base}${study.images[1]}`} alt="" class="w-full h-full object-cover" />
           </div>
         )}
 
-        <!-- Outcome (accent card) -->
-        <div class="bg-primary text-primary-container p-6 flex flex-col gap-4 md:col-span-2">
+        <!-- OUTCOME CARD -->
+        <div class="bg-primary text-primary-container p-6 flex flex-col gap-4">
           <div class="flex items-center gap-3">
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-80">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
@@ -118,35 +111,35 @@ const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || '';
             </svg>
             <h2 class="font-label-caps text-label-caps opacity-80">THE OUTCOME</h2>
           </div>
-          <p class="font-sans text-body-sm font-medium max-w-2xl">
-            {study.outcomes || study.summary}
-          </p>
+          <div class="flex flex-col gap-1">
+            <span class="text-[48px] font-sans font-bold leading-none">{study.outcomeMetric}</span>
+            <span class="font-label-caps text-label-caps uppercase">{study.outcomeMetricLabel}</span>
+          </div>
+          <p class="font-sans text-body-sm font-medium">{study.outcomeDescription}</p>
+          {study.links && study.links.length > 0 && (
+            <div class="mt-4 pt-4 border-t border-primary-container/20 flex flex-wrap gap-3">
+              {study.links.map((link: any) => (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-off-white text-off-black px-6 py-2 font-label-caps text-label-caps transition-all active:scale-95 hover:bg-white inline-flex items-center gap-2"
+                >
+                  {link.label}
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  </svg>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
-      <!-- Body content -->
+      <!-- Supplemental body content -->
       {study.body && (
         <div class="mt-12 prose prose-invert prose-lg max-w-none">
           <div set:html={study.body} />
-        </div>
-      )}
-
-      <!-- Links -->
-      {study.links && study.links.length > 0 && (
-        <div class="mt-12 pt-8 border-t border-outline-variant/20 flex flex-wrap gap-3">
-          {study.links.map((link: any) => (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-off-white text-off-black px-8 py-3 font-label-caps text-label-caps transition-all active:scale-95 hover:bg-white inline-flex items-center gap-2"
-            >
-              {link.label}
-              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M7 17L17 7M17 7H7M17 7V17"/>
-              </svg>
-            </a>
-          ))}
         </div>
       )}
     </div>

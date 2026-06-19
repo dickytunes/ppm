@@ -17,12 +17,32 @@ collections:
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "slug", label: "Slug", widget: "string" }
-      - { name: "summary", label: "Summary", widget: "text" }
-      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "summary", label: "Summary (listing card)", widget: "text" }
       - { name: "technologies", label: "Technologies", widget: "list", field: { name: "tech", label: "Technology", widget: "string" } }
       - { name: "role", label: "Role", widget: "string" }
-      - { name: "outcomes", label: "Outcomes", widget: "text" }
       - { name: "images", label: "Images", widget: "list", field: { name: "image", label: "Image", widget: "image" } }
+      - label: "Problem Card"
+        name: "problem"
+        widget: "object"
+        fields:
+          - { name: "problemHeadline", label: "Headline", widget: "string" }
+          - { name: "problemDescription", label: "Description", widget: "text" }
+          - { name: "problemQuote", label: "Pull quote (optional)", widget: "string", required: false }
+      - label: "Approach Card"
+        name: "approach"
+        widget: "object"
+        fields:
+          - { name: "approachHeadline", label: "Headline", widget: "string" }
+          - { name: "approachDescription", label: "Description", widget: "text" }
+          - { name: "approachSteps", label: "Checklist steps", widget: "list", field: { name: "step", label: "Step", widget: "string" } }
+      - label: "Outcome Card"
+        name: "outcome"
+        widget: "object"
+        fields:
+          - { name: "outcomeMetric", label: "Metric (e.g. 40%)", widget: "string" }
+          - { name: "outcomeMetricLabel", label: "Metric label (e.g. Faster Deployment)", widget: "string" }
+          - { name: "outcomeDescription", label: "Description", widget: "text" }
+      - { name: "body", label: "Supplemental body (optional)", widget: "markdown", required: false }
       - { name: "links", label: "Links", widget: "list", fields: [
           { name: "label", label: "Label", widget: "string" },
           { name: "url", label: "URL", widget: "string" }
