@@ -28,6 +28,10 @@ Desktop.ini
 .idea/
 
 # Build
+web/dist/
+
+# CMS-managed content (editors don't commit)
+web/content/
 /dist/
 /build/
 
